@@ -1,0 +1,24 @@
+:root {
+  --default-fonts: 'Rubik', system-ui, sans-serif;
+  --mono-fonts: 'Martian Mono', 'Monaco', monospace;
+
+  --color-shade150: 345 100% 99%;
+  --color-accent: 194 96% 10%;
+}
+
+html {
+  min-height: 100%;
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--default-fonts);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // background-color: hsl(var(--color-shade150));
+};

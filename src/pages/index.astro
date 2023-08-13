@@ -1,15 +1,23 @@
 ---
+import Layout from '@layouts/Index.astro';
+import { SITENAME } from '../../constants';
+
+const description = '蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。';
+const dateModified = '2023-07-23T17:10:00+08:00';
+const datePublished = '2021-08-11T00:00:00+08:00';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title={SITENAME}
+  description={description}
+  dateModified={dateModified}
+  datePublished={datePublished}
+>
+  <!-- <h1 class='title'>Astro1</h1> -->
+  <p class='description'>蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。</p>
+</Layout>
+
+<style lang='scss'>
+  .description {
+  }
+</style>
