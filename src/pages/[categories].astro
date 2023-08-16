@@ -1,0 +1,25 @@
+---
+import { categories } from '../../constants';
+import 'node_modules/normalize.css/normalize.css';
+import '@styles/global.scss';
+import '@fontsource-variable/rubik';
+
+export async function getStaticPaths() {
+  return categories.map(({ name, label }) => ({
+    params: { categories: name },
+    props: { name, label }
+  }));
+}
+
+const { name, label } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang='zh-TW'>
+  <head> </head>
+  <body>
+    {name}
+    {label}
+    <style lang='scss'></style>
+  </body>
+</html>
