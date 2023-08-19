@@ -1,10 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
+import Layout from '@layouts/Slug.astro';
+
 export async function getStaticPaths() {
   const tidyEntries = await getCollection('tidy');
   const utensilsEntries = await getCollection('utensils');
+  const cleanEntries = await getCollection('clean');
 
-  return [...tidyEntries, ...utensilsEntries].map((entry) => {
+  return [...tidyEntries, ...utensilsEntries, ...cleanEntries].map((entry) => {
     return {
       params: { categories: entry.collection, slug: entry.slug },
       props: { entry }
@@ -12,6 +15,19 @@ export async function getStaticPaths() {
   });
 }
 
+const description = '蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。';
+const dateModified = '2023-07-23T17:10:00+08:00';
+const datePublished = '2021-08-11T00:00:00+08:00';
+
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
+
+<Layout
+  title={`123`}
+  description={description}
+  dateModified={dateModified}
+  datePublished={datePublished}
+>
+  <Content />
+</Layout>

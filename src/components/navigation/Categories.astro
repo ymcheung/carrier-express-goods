@@ -1,12 +1,18 @@
 ---
-import { categories } from '../../constants';
+import { categories } from '../../../constants';
 ---
 
 <nav class='nav'>
   <ul class='list'>
-    {categories.map(({ name, label}) =>
-      <li class='listItem'><a class='link' href={`/${name}`}>{label}</a></li>
-    )}
+    {
+      categories.map(({ name, label }) => (
+        <li class='listItem'>
+          <a class='link' href={`/${name}`}>
+            {label}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 

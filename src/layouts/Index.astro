@@ -4,7 +4,7 @@ import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
 import BaseHead from '@components/BaseHead.astro';
-import Navigation from '@components/Navigation.astro';
+import CategoriesNavigation from '@components/navigation/Categories.astro';
 
 interface Props {
   title: string;
@@ -30,7 +30,7 @@ const { title, description, dateModified, datePublished } =
   <body class='home'>
     <header class='header'>
       <h1 class='title'>{SITENAME}</h1>
-      <Navigation />
+      <CategoriesNavigation />
     </header>
     <main class=''>
       <slot />

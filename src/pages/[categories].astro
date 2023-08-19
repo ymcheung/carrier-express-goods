@@ -6,6 +6,8 @@ import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
 
+import SlugNavigation from '@components/navigation/Slugs.astro';
+
 export async function getStaticPaths() {
   return categories.map(({ name, label }) => ({
     params: { categories: name },
@@ -28,8 +30,8 @@ const datePublished = '2021-08-11T00:00:00+08:00';
   dateModified={dateModified}
   datePublished={datePublished}
 >
-  {label}
-  <ul>
+  <SlugNavigation categoeyName={name} />
+  <!-- <ul>
     {
       categoryEntries.map(({ slug, data: { title } }) => (
         <li>
@@ -37,5 +39,5 @@ const datePublished = '2021-08-11T00:00:00+08:00';
         </li>
       ))
     }
-  </ul>
+  </ul> -->
 </Layout>
