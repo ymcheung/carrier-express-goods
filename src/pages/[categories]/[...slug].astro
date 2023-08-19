@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const tidyEntries = await getCollection('tidy');
+  const utensilsEntries = await getCollection('utensils');
+
+  return [...tidyEntries, ...utensilsEntries].map((entry) => {
+    return {
+      params: { categories: entry.collection, slug: entry.slug },
+      props: { entry }
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---

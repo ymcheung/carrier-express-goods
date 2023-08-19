@@ -1,0 +1,56 @@
+---
+import { SITENAME } from '../../constants';
+import 'node_modules/normalize.css/normalize.css';
+import '@styles/global.scss';
+import '@fontsource-variable/rubik';
+import BaseHead from '@components/BaseHead.astro';
+import Navigation from '@components/Navigation.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  dateModified: string;
+  datePublished: string;
+}
+
+const { title, description, dateModified, datePublished } =
+  Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang='zh-TW'>
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      dateModified={dateModified}
+      datePublished={datePublished}
+    />
+  </head>
+  <body class='home'>
+    <header class='header'>
+      <h1 class='title'>{SITENAME}</h1>
+      <Navigation />
+    </header>
+    <main class=''>
+      <slot />
+    </main>
+    <style lang='scss'>
+      .home {
+        display: grid;
+      }
+
+      .header {
+        padding-block-start: 1.5rem;
+        padding-inline-start: 1rem;
+        padding-inline-end: 1rem;
+      }
+
+      .title {
+        margin-block-start: 0;
+        margin-block-end: 2rem;
+        color: hsl(var(--color-accent));
+      }
+    </style>
+  </body>
+</html>

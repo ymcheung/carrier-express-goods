@@ -1,5 +1,7 @@
 ---
 import { categories } from '../../constants';
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Categories.astro';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
@@ -12,14 +14,28 @@ export async function getStaticPaths() {
 }
 
 const { name, label } = Astro.props;
+
+const categoryEntries = await getCollection(name);
+
+const description = '蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。';
+const dateModified = '2023-07-23T17:10:00+08:00';
+const datePublished = '2021-08-11T00:00:00+08:00';
 ---
 
-<!DOCTYPE html>
-<html lang='zh-TW'>
-  <head> </head>
-  <body>
-    {name}
-    {label}
-    <style lang='scss'></style>
-  </body>
-</html>
+<Layout
+  title={label}
+  description={description}
+  dateModified={dateModified}
+  datePublished={datePublished}
+>
+  {label}
+  <ul>
+    {
+      categoryEntries.map(({ slug, data: { title } }) => (
+        <li>
+          <a href={`/${name}/${slug}`}>{title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

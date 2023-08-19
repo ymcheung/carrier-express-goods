@@ -14,24 +14,24 @@ export const categories =
       name: 'clean',
       label: '清潔'
     },
-    {
-      name: 'clothes',
-      label: '衣著'
-    },
-    {
-      name: 'decoration',
-      label: '裝飾'
-    },
-    {
-      name: 'outdoor',
-      label: '戶外'
-    },
-    {
-      name: 'stationary',
-      label: '文具'
-    },
-    {
-      name: 'etc',
-      label: '還沒分類'
-    }
+    // {
+    //   name: 'clothes',
+    //   label: '衣著'
+    // },
+    // {
+    //   name: 'decoration',
+    //   label: '裝飾'
+    // },
+    // {
+    //   name: 'outdoor',
+    //   label: '戶外'
+    // },
+    // {
+    //   name: 'stationary',
+    //   label: '文具'
+    // },
+    // {
+    //   name: 'etc',
+    //   label: '還沒分類'
+    // }
   ];
