@@ -14,5 +14,7 @@ export const itemSchema = z.object({
   place: z.string(),
   made: z.string(),
   source: z.string().url().optional(),
-  tags: z.array(z.enum(['黑貓','白貓', '橘貓', '賓士貓', '三花貓', '虎斑貓'])).optional()
+  tags: z.array(z.enum(['黑貓', '白貓', '橘貓', '賓士貓', '三花貓', '虎斑貓'])).optional(),
+  dateModified: z.date(),
+  datePublished: z.date()
 })

@@ -13,10 +13,14 @@ const datePublished = '2021-08-11T00:00:00+08:00';
   dateModified={dateModified}
   datePublished={datePublished}
 >
+  <h1 class='title'>{SITENAME}</h1>
   <p class='description'>{description}</p>
 </Layout>
 
 <style lang='scss'>
-  .description {
+  .title {
+    margin-block-start: 0;
+    margin-block-end: 2rem;
+    color: hsl(var(--color-accent));
   }
 </style>
