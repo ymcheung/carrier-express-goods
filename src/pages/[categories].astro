@@ -1,4 +1,5 @@
 ---
+import { SITENAME } from '../../constants';
 import { categories } from '../../constants';
 // import { getCollection } from 'astro:content';
 import Layout from '@layouts/Categories.astro';
@@ -15,20 +16,19 @@ export async function getStaticPaths() {
   }));
 }
 
-const { name: categoeyName, label } = Astro.props;
+const { name: categoryName, label } = Astro.props;
 
-// const categoryEntries = await getCollection(name);
-
+const pageTitle = `${SITENAME}${label}`;
 const description = '蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。';
 const dateModified = '2023-07-23T17:10:00+08:00';
 const datePublished = '2021-08-11T00:00:00+08:00';
 ---
 
 <Layout
-  title={label}
+  title={pageTitle}
   description={description}
   dateModified={dateModified}
   datePublished={datePublished}
 >
-  <SlugNavigation categoeyName={categoeyName} />
+  <SlugNavigation categoryName={categoryName} />
 </Layout>

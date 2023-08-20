@@ -1,12 +1,14 @@
 ---
 import { categories } from '../../../constants';
+
+const { categories: categoryName } = Astro.params;
 ---
 
-<nav class='nav'>
+<nav>
   <ul class='list'>
     {
       categories.map(({ name, label }) => (
-        <li class='listItem'>
+        <li class={`listItem${name === categoryName ? ' isActive' : ''}`}>
           <a class='link' href={`/${name}`}>
             {label}
           </a>
@@ -18,21 +20,32 @@ import { categories } from '../../../constants';
 
 <style lang='scss'>
   .nav {
-    margin-block-end: 1.5rem;
+    // margin-block-end: 1.5rem;
     // padding-inline-start: 1rem;
     // padding-inline-end: 1rem;
   }
 
   .list {
     display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(max-content, auto);
+    gap: 1.2rem;
+    margin-block: 0;
     padding-inline-start: 0;
+    padding-inline-end: 1.6rem;
+    overflow-x: auto;
   }
 
   .listItem {
+    padding-block: 1.2rem;
     list-style-type: none;
   }
 
   .link {
-    font-size: 1.5rem;
+    display: inline-block;
+    padding-block: 0.6rem;
+    color: var(--color-shade40);
+    font-size: 2rem;
+    text-decoration: none;
   }
 </style>

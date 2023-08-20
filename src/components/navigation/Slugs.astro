@@ -2,18 +2,17 @@
 // import { categories } from '../../../constants';
 import { getCollection } from 'astro:content';
 
-const { categoeyName } = Astro.props;
+const { categoryName } = Astro.props;
 
-const slugItems = await getCollection(categoeyName);
-console.log({ slugItems });
+const slugItems = await getCollection(categoryName);
 ---
 
-<nav class='nav'>
+<nav>
   <ul class='list'>
     {
       slugItems.map(({ slug, data }) => (
         <li class='listItem'>
-          <a class='link' href={`/${categoeyName}/${slug}`}>
+          <a class='link' href={`/${categoryName}/${slug}`}>
             {data.title}
           </a>
         </li>
@@ -24,7 +23,7 @@ console.log({ slugItems });
 
 <style lang='scss'>
   .nav {
-    margin-block-end: 1.5rem;
+    // margin-block-end: 1.5rem;
     // padding-inline-start: 1rem;
     // padding-inline-end: 1rem;
   }

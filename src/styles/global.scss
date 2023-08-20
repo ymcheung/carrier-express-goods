@@ -2,8 +2,12 @@
   --default-fonts: 'Rubik', system-ui, sans-serif;
   --mono-fonts: 'Martian Mono', 'Monaco', monospace;
 
-  --color-shade150: 345 100% 99%;
-  --color-accent: 203deg 30% 26%;
+  --color-shade25: oklch(25% 0 0);
+  --color-shade40: oklch(40% 0 0);
+  --color-shade80: oklch(80% 0 0);
+  --color-shade92: oklch(92% 0 0);
+  --color-shade96: oklch(96% 0 0);
+  --color-shade98: oklch(98% 0 0);
 }
 
 html {
@@ -17,8 +21,11 @@ html {
 }
 
 body {
+  min-height: 100vh;
   font-family: var(--default-fonts);
+  line-height: 1.25;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // background-color: hsl(var(--color-shade150));
+  // background-color: oklch(from var(--color-shade98));
+  background-color: var(--color-shade98);
 };

@@ -1,11 +1,12 @@
 ---
-import { SITENAME } from '../../constants';
+import { categories } from '../../constants';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
 import BaseHead from '@components/BaseHead.astro';
 import CategoryNavigation from '@components/navigation/Categories.astro';
 import SlugNavigation from '@components/navigation/Slugs.astro';
+import Footer from '@components/Footer.astro';
 
 interface Props {
   title: string;
@@ -14,17 +15,23 @@ interface Props {
   datePublished: string;
 }
 
-const { categories } = Astro.params;
+const { categories: categoryName } = Astro.params;
 
 const { title, description, dateModified, datePublished } =
   Astro.props as Props;
+
+const categoryLabel = categories.find(
+  ({ name }) => name === categoryName
+)?.label;
+
+const pageTitle = `${title} (${categoryLabel})`;
 ---
 
 <!DOCTYPE html>
 <html lang='zh-TW'>
   <head>
     <BaseHead
-      title={title}
+      title={pageTitle}
       description={description}
       dateModified={dateModified}
       datePublished={datePublished}
@@ -35,18 +42,25 @@ const { title, description, dateModified, datePublished } =
       <CategoryNavigation />
     </header>
     <main>
-      <SlugNavigation categoeyName={categories} />
+      <SlugNavigation categoryName={categoryName} />
       <slot />
     </main>
+    <Footer />
     <style lang='scss'>
+      .home {
+        display: grid;
+        grid: auto 1fr auto / 100vw;
+      }
+
       header {
-        padding-inline-start: 1rem;
-        padding-inline-end: 1rem;
+        margin-block-end: 1.6rem;
+        padding-inline-start: 1.6rem;
+        background-color: var(--color-shade96);
       }
 
       main {
-        padding-inline-start: 1rem;
-        padding-inline-end: 1rem;
+        padding-inline-start: 1.6rem;
+        padding-inline-end: 1.6rem;
       }
     </style>
   </body>

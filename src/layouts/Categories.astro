@@ -1,10 +1,10 @@
 ---
-import { SITENAME } from '../../constants';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
 import BaseHead from '@components/BaseHead.astro';
 import CategoriesNavigation from '@components/navigation/Categories.astro';
+import Footer from '@components/Footer.astro';
 
 interface Props {
   title: string;
@@ -34,15 +34,22 @@ const { title, description, dateModified, datePublished } =
     <main>
       <slot />
     </main>
+    <Footer />
     <style lang='scss'>
+      .home {
+        display: grid;
+        grid: auto 1fr auto / 100vw;
+      }
+
       header {
-        padding-inline-start: 1rem;
-        padding-inline-end: 1rem;
+        margin-block-end: 1.6rem;
+        padding-inline-start: 1.6rem;
+        background-color: var(--color-shade96);
       }
 
       main {
-        padding-inline-start: 1rem;
-        padding-inline-end: 1rem;
+        padding-inline-start: 1.6rem;
+        padding-inline-end: 1.6rem;
       }
     </style>
   </body>
