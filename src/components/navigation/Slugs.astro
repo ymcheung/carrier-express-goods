@@ -22,22 +22,30 @@ const slugItems = await getCollection(categoryName);
 </nav>
 
 <style lang='scss'>
-  .nav {
-    // margin-block-end: 1.5rem;
-    // padding-inline-start: 1rem;
-    // padding-inline-end: 1rem;
+  nav {
+    margin-inline: -1.6rem;
+    padding-inline-start: 1.6rem;
+    border-bottom: 1px solid var(--color-shade92);
   }
 
   .list {
     display: grid;
+    grid: auto-flow / repeat(2, 240px);
+    gap: 1.2rem;
+    overflow-x: auto;
+    margin-block: 0;
     padding-inline-start: 0;
+    padding-block-end: 1.2rem;
   }
 
   .listItem {
+    padding-inline-end: 0.4rem;
     list-style-type: none;
   }
 
   .link {
-    font-size: 1.5rem;
+    color: var(--color-shade40);
+    font-size: 1.6rem;
+    text-decoration: none;
   }
 </style>

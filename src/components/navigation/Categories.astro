@@ -19,11 +19,11 @@ const { categories: categoryName } = Astro.params;
 </nav>
 
 <style lang='scss'>
-  .nav {
-    // margin-block-end: 1.5rem;
-    // padding-inline-start: 1rem;
-    // padding-inline-end: 1rem;
-  }
+  // .nav {
+  // margin-block-end: 1.5rem;
+  // padding-inline-start: 1rem;
+  // padding-inline-end: 1rem;
+  // }
 
   .list {
     display: grid;
@@ -31,19 +31,40 @@ const { categories: categoryName } = Astro.params;
     grid-auto-columns: minmax(max-content, auto);
     gap: 1.2rem;
     margin-block: 0;
-    padding-inline-start: 0;
+    padding-inline-start: 1.6rem;
     padding-inline-end: 1.6rem;
+    padding-block: 1.2rem;
     overflow-x: auto;
   }
 
   .listItem {
-    padding-block: 1.2rem;
+    margin-inline-start: -0.8rem;
+    padding-block: 0.6rem;
+    padding-inline-start: 0.8rem;
     list-style-type: none;
+    border-radius: 0.6rem;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+
+    &:hover {
+      border-color: var(--color-shade92);
+    }
+
+    &.isActive {
+      background-color: var(--color-shade92);
+      border-color: var(--color-shade92);
+
+      .link {
+        pointer-events: none;
+      }
+    }
   }
 
   .link {
     display: inline-block;
     padding-block: 0.6rem;
+    padding-inline-end: 0.8rem;
     color: var(--color-shade40);
     font-size: 2rem;
     text-decoration: none;
