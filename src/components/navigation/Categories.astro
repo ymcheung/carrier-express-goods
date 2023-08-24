@@ -35,6 +35,10 @@ const { categories: categoryName } = Astro.params;
     padding-inline-end: 1.6rem;
     padding-block: 1.2rem;
     overflow-x: auto;
+
+    @media screen and (min-width: 992px) {
+      grid-auto-flow: row;
+    }
   }
 
   .listItem {

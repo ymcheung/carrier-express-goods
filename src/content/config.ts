@@ -14,9 +14,14 @@ const cleanCollection = defineCollection({
   type: 'content',
   schema: itemSchema
 });
+const decorationCollection = defineCollection({
+  type: 'content',
+  schema: itemSchema
+});
 
 export const collections = {
   'tidy': tidyCollection,
   'utensils': utensilsCollection,
   'clean': cleanCollection,
+  'decoration': decorationCollection,
 };

@@ -18,10 +18,10 @@ export const categories =
     //   name: 'clothes',
     //   label: '衣著'
     // },
-    // {
-    //   name: 'decoration',
-    //   label: '裝飾'
-    // },
+    {
+      name: 'decoration',
+      label: '裝飾'
+    },
     // {
     //   name: 'outdoor',
     //   label: '戶外'

@@ -26,6 +26,13 @@ const slugItems = await getCollection(categoryName);
     margin-inline: -1.6rem;
     padding-inline-start: 1.6rem;
     border-bottom: 1px solid var(--color-shade92);
+
+    @media screen and (min-width: 992px) {
+      margin-inline: 0;
+      padding-inline-start: 0;
+      border-right: 1px solid var(--color-shade92);
+      border-bottom: none;
+    }
   }
 
   .list {
@@ -36,6 +43,12 @@ const slugItems = await getCollection(categoryName);
     margin-block: 0;
     padding-inline-start: 0;
     padding-block-end: 1.2rem;
+
+    @media screen and (min-width: 992px) {
+      grid: auto-flow / 192px;
+      overflow-x: initial;
+      overflow-y: auto;
+    }
   }
 
   .listItem {
