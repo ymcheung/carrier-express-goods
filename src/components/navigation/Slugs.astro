@@ -37,7 +37,7 @@ const slugItems = await getCollection(categoryName);
 
   .list {
     display: grid;
-    grid: auto-flow / repeat(2, 240px);
+    grid: auto-flow auto / repeat(2, 240px);
     gap: 1.2rem;
     overflow-x: auto;
     margin-block: 0;
@@ -45,7 +45,7 @@ const slugItems = await getCollection(categoryName);
     padding-block-end: 1.2rem;
 
     @media screen and (min-width: 992px) {
-      grid: auto-flow / 192px;
+      grid: auto-flow / 240px;
       overflow-x: initial;
       overflow-y: auto;
     }

@@ -44,7 +44,11 @@ const pageTitle = `${title} (${categoryLabel})`;
     <main>
       <div class='mainLayout'>
         <SlugNavigation categoryName={categoryName} transition:persist />
-        <slot />
+        <div>
+          <article>
+            <slot />
+          </article>
+        </div>
       </div>
     </main>
     <Footer />
@@ -84,7 +88,13 @@ const pageTitle = `${title} (${categoryLabel})`;
         @media screen and (min-width: 992px) {
           display: grid;
           grid: auto / auto 1fr;
+          height: 100%;
         }
+      }
+
+      article {
+        max-width: 640px;
+        margin-inline: auto;
       }
     </style>
   </body>
