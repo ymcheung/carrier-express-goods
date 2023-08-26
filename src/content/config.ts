@@ -18,10 +18,20 @@ const decorationCollection = defineCollection({
   type: 'content',
   schema: itemSchema
 });
+const outdoorCollection = defineCollection({
+  type: 'content',
+  schema: itemSchema
+});
+const stationaryCollection = defineCollection({
+  type: 'content',
+  schema: itemSchema
+});
 
 export const collections = {
   'tidy': tidyCollection,
   'utensils': utensilsCollection,
   'clean': cleanCollection,
   'decoration': decorationCollection,
+  'outdoor': outdoorCollection,
+  'stationary': outdoorCollection
 };

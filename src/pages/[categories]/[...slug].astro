@@ -7,12 +7,16 @@ export async function getStaticPaths() {
   const utensilsEntries = await getCollection('utensils');
   const cleanEntries = await getCollection('clean');
   const decorationEntries = await getCollection('decoration');
+  const outdoorEntries = await getCollection('outdoor');
+  const stationaryEntries = await getCollection('stationary');
 
   return [
     ...tidyEntries,
     ...utensilsEntries,
     ...cleanEntries,
-    ...decorationEntries
+    ...decorationEntries,
+    ...outdoorEntries,
+    ...stationaryEntries
   ].map((entry) => {
     return {
       params: { categories: entry.collection, slug: entry.slug },

@@ -22,14 +22,14 @@ export const categories =
       name: 'decoration',
       label: '裝飾'
     },
-    // {
-    //   name: 'outdoor',
-    //   label: '戶外'
-    // },
-    // {
-    //   name: 'stationary',
-    //   label: '文具'
-    // },
+    {
+      name: 'outdoor',
+      label: '戶外'
+    },
+    {
+      name: 'stationary',
+      label: '文具'
+    },
     // {
     //   name: 'etc',
     //   label: '還沒分類'

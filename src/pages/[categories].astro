@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
 const { name: categoryName, label } = Astro.props;
 
-const pageTitle = `${SITENAME}${label}`;
+const pageTitle = `${label}${SITENAME}`;
 const description = '蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。';
 const dateModified = '2023-07-23T17:10:00+08:00';
 const datePublished = '2021-08-11T00:00:00+08:00';
