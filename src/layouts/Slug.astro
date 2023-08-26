@@ -81,6 +81,8 @@ const pageTitle = `${title} (${categoryLabel})`;
 
         @media screen and (min-width: 992px) {
           min-height: 100vh;
+          padding-inline-start: 0;
+          padding-inline-end: 0;
         }
       }
 
@@ -93,8 +95,12 @@ const pageTitle = `${title} (${categoryLabel})`;
       }
 
       article {
-        max-width: 640px;
+        max-width: 672px;
         margin-inline: auto;
+
+        @media screen and (min-width: 992px) {
+          padding-inline: 1.6rem;
+        }
       }
     </style>
   </body>

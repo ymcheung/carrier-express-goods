@@ -29,7 +29,7 @@ const slugItems = await getCollection(categoryName);
 
     @media screen and (min-width: 992px) {
       margin-inline: 0;
-      padding-inline-start: 0;
+      padding-inline-end: 1.6rem;
       border-right: 1px solid var(--color-shade92);
       border-bottom: none;
     }
@@ -48,6 +48,8 @@ const slugItems = await getCollection(categoryName);
       grid: auto-flow / 240px;
       overflow-x: initial;
       overflow-y: auto;
+      padding-block-start: 2rem;
+      padding-block-end: 0;
     }
   }
 
@@ -57,8 +59,11 @@ const slugItems = await getCollection(categoryName);
   }
 
   .link {
+    display: inline-block;
+    padding-block: 8px;
     color: var(--color-shade40);
     font-size: 1.6rem;
+    line-height: 1.5;
     text-decoration: none;
   }
 </style>
