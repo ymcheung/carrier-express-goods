@@ -10,12 +10,18 @@ import Footer from '@components/Footer.astro';
 
 interface Props {
   title: string;
+  cover?: {
+    src: string;
+    width: number;
+    height: number;
+    format: string;
+  };
   description: string;
   dateModified: string;
   datePublished: string;
 }
 
-const { categories: categoryName } = Astro.params;
+const { categories: categoryName, slug } = Astro.params;
 
 const { title, description, dateModified, datePublished } =
   Astro.props as Props;
@@ -46,6 +52,7 @@ const pageTitle = `${title} (${categoryLabel})`;
         <SlugNavigation categoryName={categoryName} transition:persist />
         <div>
           <article>
+            <!-- <Image src={cover.src} alt={title} /> -->
             <slot />
           </article>
         </div>
@@ -60,7 +67,7 @@ const pageTitle = `${title} (${categoryLabel})`;
         @media screen and (min-width: 992px) {
           grid:
             'header .' auto
-            'header footer' auto / auto 1fr;
+            'header footer' 160px / 160px 1fr;
         }
       }
 
@@ -100,6 +107,12 @@ const pageTitle = `${title} (${categoryLabel})`;
 
         @media screen and (min-width: 992px) {
           padding-inline: 1.6rem;
+        }
+
+        :global(p) {
+          margin-block-start: 0;
+          font-size: clamp(1.8rem, 1.75vw + 1rem, 2.4rem);
+          line-height: 1.5;
         }
       }
     </style>

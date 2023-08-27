@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '@layouts/Slug.astro';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const tidyEntries = await getCollection('tidy');
@@ -27,7 +28,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const {
-  data: { title, description, dateModified, datePublished }
+  data: { title, cover, description, dateModified, datePublished }
 } = entry;
 const { Content } = await entry.render();
 ---
@@ -38,5 +39,12 @@ const { Content } = await entry.render();
   dateModified={dateModified}
   datePublished={datePublished}
 >
+  <Image class='cover' src={cover} width={640} height={640} alt='' />
   <Content />
 </Layout>
+
+<style lang='scss'>
+  .cover {
+    border-radius: 24px;
+  }
+</style>

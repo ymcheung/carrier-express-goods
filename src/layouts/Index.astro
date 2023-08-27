@@ -32,7 +32,9 @@ const { title, description, dateModified, datePublished } =
       <CategoriesNavigation />
     </header>
     <main>
-      <slot />
+      <div class='mainLayout'>
+        <slot />
+      </div>
     </main>
     <Footer />
     <style lang='scss'>
@@ -43,13 +45,12 @@ const { title, description, dateModified, datePublished } =
         @media screen and (min-width: 992px) {
           grid:
             'header .' auto
-            'header footer' auto / auto 1fr;
+            'header footer' auto / 160px 1fr;
         }
       }
 
       header {
         margin-block-end: 1.6rem;
-        // padding-inline-start: 1.6rem;
         background-color: var(--color-shade96);
 
         @media screen and (min-width: 992px) {
@@ -64,18 +65,20 @@ const { title, description, dateModified, datePublished } =
 
         @media screen and (min-width: 992px) {
           min-height: 100vh;
+          padding-block-start: 2rem;
           padding-inline-start: 0;
           padding-inline-end: 0;
         }
       }
 
       .mainLayout {
+        max-width: 672px;
+        margin-inline: auto;
+
         @media screen and (min-width: 992px) {
-          display: grid;
-          height: 100%;
+          padding-inline: 1.6rem;
         }
       }
     </style>
-    <style lang='scss'></style>
   </body>
 </html>
