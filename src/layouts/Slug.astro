@@ -87,15 +87,18 @@ const pageTitle = `${title} (${categoryLabel})`;
         padding-inline-end: 1.6rem;
 
         @media screen and (min-width: 992px) {
-          min-height: 100vh;
+          min-height: calc(100vh - 53px);
           padding-inline-start: 0;
           padding-inline-end: 0;
         }
       }
 
       .mainLayout {
+        display: grid;
+        grid: auto auto / 100%;
+        row-gap: 16px;
+
         @media screen and (min-width: 992px) {
-          display: grid;
           grid: auto / auto 1fr;
           height: 100%;
         }
@@ -106,12 +109,14 @@ const pageTitle = `${title} (${categoryLabel})`;
         margin-inline: auto;
 
         @media screen and (min-width: 992px) {
+          padding-block-start: 2.4rem;
           padding-inline: 1.6rem;
         }
 
         :global(p) {
           margin-block-start: 0;
-          font-size: clamp(1.8rem, 1.75vw + 1rem, 2.4rem);
+          color: var(--color-shade25);
+          font-size: clamp(1.8rem, 1.125vw + 1rem, 2.2rem);;
           line-height: 1.5;
         }
       }
