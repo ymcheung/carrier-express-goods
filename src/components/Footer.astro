@@ -1,18 +1,63 @@
 ---
+
 ---
 
 <footer>
-  <a href="https://read.cv/ymcheung" target="_blank" rel="noopener">@ymcheung</a> 製作 (2023)
+  <div class='layout'>
+    <p class='text'>
+      <a
+        class='link'
+        href='https://read.cv/ymcheung'
+        target='_blank'
+        rel='noopener'>@ymcheung</a
+      > 製作 (2023)
+    </p>
+    <p class='text sm'>
+      使用
+      <a
+        class='link'
+        href='https://thenounproject.com/icon/cat-4670212/'
+        target='_blank'
+        rel='noopener'
+        >Gregor Cresnar
+      </a> 繪製的圖示，CCBY 3.0
+    </p>
+  </div>
 </footer>
 <style lang='scss'>
   footer {
     padding: 1.6rem;
-    color: var(--color-shade40);
-    font-size: 1.6rem;
+    line-height: 1.5;
+    border-top: 1px solid var(--color-shade92);
 
     @media screen and (min-width: 992px) {
       grid-area: footer;
-      border-top: 1px solid var(--color-shade92);
+    }
+  }
+
+  .text {
+    margin-block: 0 1.2rem;
+    color: var(--color-shade40);
+    font-size: 1.6rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+
+    &.sm {
+      font-size: 1.4rem;
+    }
+  }
+
+  .link {
+    display: inline-block;
+    color: var(--color-shade40);
+    font-size: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-shade25);
+      text-decoration: underline;
     }
   }
 </style>

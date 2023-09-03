@@ -2,6 +2,8 @@
 import { categories } from '../../../constants';
 
 const { categories: categoryName } = Astro.params;
+
+console.log({ categoryName })
 ---
 
 <nav>
@@ -15,6 +17,11 @@ const { categories: categoryName } = Astro.params;
         </li>
       ))
     }
+    <li class={`listItem${typeof categoryName === 'undefined' ? ' isActive' : ''}`}>
+      <a class='link' href="/">
+        首頁
+      </a>
+    </li>
   </ul>
 </nav>
 
