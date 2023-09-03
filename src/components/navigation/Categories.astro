@@ -1,13 +1,15 @@
 ---
 import { categories } from '../../../constants';
+import SiteIcon from '@components/navigation/SiteIcon.astro';
 
-const { categories: categoryName } = Astro.params;
-
-console.log({ categoryName })
+const { categories: categoryName = '' } = Astro.params;
 ---
 
 <nav>
   <ul class='list'>
+    <li class={`listItem${categoryName === '' ? ' isActive' : ''}`}>
+      <a class='link' href='/'><SiteIcon /> 首頁</a>
+    </li>
     {
       categories.map(({ name, label }) => (
         <li class={`listItem${name === categoryName ? ' isActive' : ''}`}>
@@ -17,11 +19,6 @@ console.log({ categoryName })
         </li>
       ))
     }
-    <li class={`listItem${typeof categoryName === 'undefined' ? ' isActive' : ''}`}>
-      <a class='link' href="/">
-        首頁
-      </a>
-    </li>
   </ul>
 </nav>
 
@@ -49,8 +46,8 @@ console.log({ categoryName })
 
   .listItem {
     margin-inline-start: -0.8rem;
-    padding-block: 0.6rem;
-    padding-inline-start: 0.8rem;
+    // padding-block: 0.6rem;
+    padding-inline-start: 1.2rem;
     list-style-type: none;
     border-radius: 0.6rem;
     border-width: 2px;
@@ -73,10 +70,11 @@ console.log({ categoryName })
 
   .link {
     display: block;
-    padding-block: 0.6rem;
-    padding-inline-end: 0.8rem;
+    padding-block: 0.8rem;
+    padding-inline-end: 1.2rem;
     color: var(--color-shade40);
     font-size: 1.6rem;
+    line-height: 2;
     letter-spacing: 0.1rem;
     text-decoration: none;
   }
