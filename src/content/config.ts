@@ -4,27 +4,27 @@ import { itemSchema } from '../schemas';
 // 2. Define your collection(s)
 const tidyCollection = defineCollection({
   type: 'content',
-  schema: ({ image }) => itemSchema(image)
+  schema: itemSchema
 });
 const utensilsCollection = defineCollection({
   type: 'content',
-  schema: ({ image }) => itemSchema(image)
+  schema: itemSchema
 });
 const cleanCollection = defineCollection({
   type: 'content',
-  schema: ({ image }) => itemSchema(image)
+  schema: itemSchema
 });
 const decorationCollection = defineCollection({
   type: 'content',
-  schema: ({ image }) => itemSchema(image)
+  schema: itemSchema
 });
 const outdoorCollection = defineCollection({
   type: 'content',
-  schema: ({ image }) => itemSchema(image)
+  schema: itemSchema
 });
 const stationaryCollection = defineCollection({
   type: 'content',
-  schema: ({ image }) => itemSchema(image)
+  schema: itemSchema
 });
 
 export const collections = {

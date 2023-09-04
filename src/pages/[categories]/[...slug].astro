@@ -27,9 +27,11 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const { categories: categoryName, slug } = Astro.params;
 const {
-  data: { title, cover, description, dateModified, datePublished }
+  data: { title, description, dateModified, datePublished }
 } = entry;
+
 const { Content } = await entry.render();
 ---
 
@@ -39,7 +41,13 @@ const { Content } = await entry.render();
   dateModified={dateModified}
   datePublished={datePublished}
 >
-  <Image class='cover' src={cover} width={640} height={640} alt='' />
+  <Image
+    class='cover'
+    src={import(`../../assets/${categoryName}/${slug}/cover.jpg`)}
+    width={640}
+    height={640}
+    alt=''
+  />
   <Content />
 </Layout>
 

@@ -1,8 +1,7 @@
 import { z } from 'astro:content';
 
-export const itemSchema = (image) => z.object({
+export const itemSchema = z.object({
   title: z.string(),
-  cover: image(),
   link: z.string().url().optional(),
   brand: z.string().optional(),
   description: z.string(),
