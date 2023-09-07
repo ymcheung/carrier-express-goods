@@ -33,7 +33,7 @@ const categoryLabel = categories.find(
 const pageTitle = `${title} (${categoryLabel})`;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang='zh-TW'>
   <head>
     <BaseHead
@@ -67,7 +67,7 @@ const pageTitle = `${title} (${categoryLabel})`;
         @media screen and (min-width: 992px) {
           grid:
             'header .' auto
-            'header footer' 160px / 160px 1fr;
+            'header footer' auto / 160px 1fr;
         }
       }
 
@@ -116,7 +116,7 @@ const pageTitle = `${title} (${categoryLabel})`;
         :global(p) {
           margin-block-start: 0;
           color: var(--color-shade25);
-          font-size: clamp(1.8rem, 1.125vw + 1rem, 2.2rem);;
+          font-size: clamp(1.8rem, 1.125vw + 1rem, 2.2rem);
           line-height: 1.5;
         }
       }
