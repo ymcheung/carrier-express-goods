@@ -4,6 +4,9 @@ import { getCollection } from 'astro:content';
 
 const { slug: slugName } = Astro.params;
 const { categoryName } = Astro.props;
+interface Props {
+  categoryName?: string;
+}
 
 const slugItems = await getCollection(categoryName);
 ---
@@ -12,11 +15,8 @@ const slugItems = await getCollection(categoryName);
   <ul class='list'>
     {
       slugItems.map(({ slug, data }) => (
-        <li class='listItem'>
-          <a
-            class={`link${slug === slugName ? ' isActive' : ''}`}
-            href={`/${categoryName}/${slug}`}
-          >
+        <li class={`listItem${slug === slugName ? ' isActive' : ''}`}>
+          <a class='link' href={`/${categoryName}/${slug}`}>
             {data.title}
           </a>
         </li>
@@ -60,6 +60,15 @@ const slugItems = await getCollection(categoryName);
   .listItem {
     padding-inline-end: 0.4rem;
     list-style-type: none;
+    border-radius: 0.6rem;
+
+    &.isActive {
+      background-color: var(--color-shade96);
+
+      .link {
+        pointer-events: none;
+      }
+    }
   }
 
   .link {
@@ -70,13 +79,9 @@ const slugItems = await getCollection(categoryName);
     font-size: 1.6rem;
     line-height: 1.5;
     text-decoration: none;
-    border-radius: 0.6rem;
 
     @media screen and (min-width: 992px) {
       padding-inline: 1.6rem;
-    }
-    &.isActive {
-      background-color: var(--color-shade96);
     }
   }
 </style>

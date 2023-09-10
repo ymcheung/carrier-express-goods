@@ -8,12 +8,12 @@ export const categories =
     },
     {
       name: 'utensils',
-      label: '廚房餐具'
+      label: '廚房清潔'
     },
-    {
-      name: 'clean',
-      label: '清潔'
-    },
+    // {
+    //   name: 'clean',
+    //   label: '清潔'
+    // },
     // {
     //   name: 'clothes',
     //   label: '衣著'

@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 export async function getStaticPaths() {
   const tidyEntries = await getCollection('tidy');
   const utensilsEntries = await getCollection('utensils');
-  const cleanEntries = await getCollection('clean');
+  // const cleanEntries = await getCollection('clean');
   const decorationEntries = await getCollection('decoration');
   const outdoorEntries = await getCollection('outdoor');
   const stationaryEntries = await getCollection('stationary');
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   return [
     ...tidyEntries,
     ...utensilsEntries,
-    ...cleanEntries,
+    // ...cleanEntries,
     ...decorationEntries,
     ...outdoorEntries,
     ...stationaryEntries
@@ -29,7 +29,18 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { categories: categoryName, slug } = Astro.params;
 const {
-  data: { title, description, dateModified, datePublished }
+  data: {
+    title,
+    link,
+    description,
+    price,
+    year,
+    place,
+    made,
+    tags,
+    dateModified,
+    datePublished
+  }
 } = entry;
 
 const { Content } = await entry.render();
@@ -38,9 +49,11 @@ const { Content } = await entry.render();
 <Layout
   title={title}
   description={description}
+  tags={tags}
   dateModified={dateModified}
   datePublished={datePublished}
 >
+  <h1>{title}</h1>
   <Image
     class='cover'
     src={import(`../../assets/${categoryName}/${slug}/cover.jpg`)}

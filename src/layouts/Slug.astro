@@ -17,13 +17,14 @@ interface Props {
     format: string;
   };
   description: string;
+  tags?: string[];
   dateModified: string;
   datePublished: string;
 }
 
-const { categories: categoryName, slug } = Astro.params;
+const { categories: categoryName } = Astro.params;
 
-const { title, description, dateModified, datePublished } =
+const { title, description, tags, dateModified, datePublished } =
   Astro.props as Props;
 
 const categoryLabel = categories.find(
@@ -55,6 +56,15 @@ const pageTitle = `${title} (${categoryLabel})`;
             <!-- <Image src={cover.src} alt={title} /> -->
             <slot />
           </article>
+          {
+            !!tags && tags.length > 0 && (
+              <ul class='tags'>
+                {tags.map((tag) => (
+                  <li class='tagItem'>{tag}</li>
+                ))}
+              </ul>
+            )
+          }
         </div>
       </div>
     </main>
@@ -119,6 +129,25 @@ const pageTitle = `${title} (${categoryLabel})`;
           font-size: clamp(1.8rem, 1.125vw + 1rem, 2.2rem);
           line-height: 1.5;
         }
+      }
+
+      .tags {
+        display: grid;
+        grid: auto / auto-flow max-content;
+        gap: 1.6rem;
+        max-width: 672px;
+        margin-block: 0 1.6rem;
+        margin-inline: auto;
+        padding-inline: 1.6rem;
+
+        // @media screen and (min-width: 992px) {
+        //   padding-inline: 0;
+        // }
+      }
+
+      .tagItem {
+        list-style-type: none;
+        font-size: 1.6rem;
       }
     </style>
   </body>
