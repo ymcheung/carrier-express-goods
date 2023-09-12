@@ -1,5 +1,7 @@
 ---
 import { categories } from '../../constants';
+import { type InferGetStaticParamsType } from 'astro';
+import { getStaticPaths } from '../pages/[categories]/[...slug].astro';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
@@ -22,7 +24,8 @@ interface Props {
   datePublished: string;
 }
 
-const { categories: categoryName } = Astro.params;
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+const { categories: categoryName } = Astro.params as Params;
 
 const { title, description, tags, dateModified, datePublished } =
   Astro.props as Props;
@@ -138,11 +141,11 @@ const pageTitle = `${title} (${categoryLabel})`;
         max-width: 672px;
         margin-block: 0 1.6rem;
         margin-inline: auto;
-        padding-inline: 1.6rem;
+        padding-inline: 0;
 
-        // @media screen and (min-width: 992px) {
-        //   padding-inline: 0;
-        // }
+        @media screen and (min-width: 992px) {
+          padding-inline: 1.6rem;
+        }
       }
 
       .tagItem {

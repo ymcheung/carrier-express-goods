@@ -8,9 +8,12 @@ export const itemSchema = z.object({
   price: z.object({
     currency: z.enum(['新台幣','日圓', '美金']),
     about: z.boolean().optional(),
-    number: z.number()
+    number: z.number().or(z.literal('忘記了'))
   }),
-  year: z.number(),
+  year: z.object({
+    number: z.number(),
+    before: z.boolean().optional()
+  }),
   place: z.string(),
   made: z.string(),
   source: z.string().url().optional(),

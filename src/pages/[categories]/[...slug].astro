@@ -26,17 +26,19 @@ export async function getStaticPaths() {
   });
 }
 
-const { entry } = Astro.props;
 const { categories: categoryName, slug } = Astro.params;
+
+const { entry } = Astro.props;
+
 const {
   data: {
     title,
-    link,
+    // link,
     description,
-    price,
-    year,
-    place,
-    made,
+    // price,
+    // year,
+    // place,
+    // made,
     tags,
     dateModified,
     datePublished
@@ -65,6 +67,12 @@ const { Content } = await entry.render();
 </Layout>
 
 <style lang='scss'>
+  h1 {
+    margin-block: 0 1.6rem;
+    color: var(--color-shade25);
+    font-size: 3.2rem;
+  }
+
   .cover {
     display: block;
     max-width: 100%;
