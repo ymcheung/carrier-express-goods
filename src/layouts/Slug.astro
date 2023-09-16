@@ -1,7 +1,5 @@
 ---
 import { categories } from '../../constants';
-import { type InferGetStaticParamsType } from 'astro';
-import { getStaticPaths } from '../pages/[categories]/[...slug].astro';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
@@ -24,7 +22,7 @@ interface Props {
   datePublished: string;
 }
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Params = { categories: (typeof categories)[number]['name'] };
 const { categories: categoryName } = Astro.params as Params;
 
 const { title, description, tags, dateModified, datePublished } =

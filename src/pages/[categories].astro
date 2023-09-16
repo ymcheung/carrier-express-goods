@@ -1,6 +1,5 @@
 ---
-import { SITENAME } from '../../constants';
-import { categories } from '../../constants';
+import { SITENAME, categories } from '../../constants';
 // import { getCollection } from 'astro:content';
 import Layout from '@layouts/Categories.astro';
 import 'node_modules/normalize.css/normalize.css';
@@ -16,7 +15,8 @@ export async function getStaticPaths() {
   }));
 }
 
-const { name: categoryName, label } = Astro.props;
+type Props = { name: (typeof categories)[number]['name']; label: string };
+const { name: categoryName, label } = Astro.props as Props;
 
 const pageTitle = `${label}${SITENAME}`;
 const description = '蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。';

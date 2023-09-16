@@ -1,6 +1,6 @@
 export const SITENAME = '用得到的貓紋'
 
-export const categories =
+export const categories = <const>
   [
     {
       name: 'tidy',

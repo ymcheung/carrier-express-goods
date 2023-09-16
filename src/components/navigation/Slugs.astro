@@ -1,9 +1,8 @@
 ---
-interface Props {
-  categoryName: 'tidy' | 'utensils' | 'decoration' | 'outdoor' | 'stationary';
-}
-// import { categories } from '../../../constants';
+import { categories } from '../../../constants';
 import { getCollection } from 'astro:content';
+
+type Props = { categoryName: (typeof categories)[number]['name'] };
 
 const { slug: slugName } = Astro.params;
 const { categoryName } = Astro.props as Props;
