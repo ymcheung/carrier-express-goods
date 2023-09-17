@@ -57,6 +57,7 @@ const slugItems = await getCollection(categoryName);
   }
 
   .listItem {
+    padding-block: 0.4rem;
     padding-inline-end: 0.4rem;
     list-style-type: none;
     border-radius: 0.6rem;
@@ -80,7 +81,8 @@ const slugItems = await getCollection(categoryName);
     text-decoration: none;
 
     @media screen and (min-width: 992px) {
-      padding-inline: 1.6rem;
+      margin-inline: 0;
+      padding: 0.8rem 0;
     }
   }
 </style>
