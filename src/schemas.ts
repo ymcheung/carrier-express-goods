@@ -6,9 +6,9 @@ export const itemSchema = z.object({
   brand: z.string().optional(),
   description: z.string(),
   price: z.object({
-    currency: z.enum(["新台幣", "日圓", "美金"]),
+    currency: z.enum(["twd", "jpy", "usd"]).optional(),
     about: z.boolean().optional(),
-    number: z.number().or(z.literal("忘記了")),
+    number: z.number().optional(),
   }),
   year: z.object({
     number: z.number(),
@@ -21,5 +21,5 @@ export const itemSchema = z.object({
     .array(z.enum(["黑貓", "白貓", "橘貓", "賓士貓", "三花貓", "虎斑貓"]))
     .optional(),
   dateModified: z.date(),
-  datePublished: z.date()
+  datePublished: z.date(),
 });

@@ -7,6 +7,7 @@ import BaseHead from '@components/BaseHead.astro';
 import CategoryNavigation from '@components/navigation/Categories.astro';
 import SlugNavigation from '@components/navigation/Slugs.astro';
 import Footer from '@components/Footer.astro';
+import getNumberComma from '../helpers/getNumberComma';
 
 interface Props {
   title: string;
@@ -17,6 +18,11 @@ interface Props {
     format: string;
   };
   description: string;
+  price: {
+    currency: 'twd' | 'jpy' | 'usd';
+    number?: number | '忘記了'
+    about?: boolean;
+  };
   made?: string;
   tags?: string[];
   dateModified: string;
@@ -26,8 +32,25 @@ interface Props {
 type Params = { categories: (typeof categories)[number]['name'] };
 const { categories: categoryName } = Astro.params as Params;
 
-const { title, description, made, tags, dateModified, datePublished } =
-  Astro.props as Props;
+const {
+  title,
+  description,
+  price: {
+    currency,
+    about: priceAbout,
+    number: priceNumber = '忘記了'
+  },
+  made,
+  tags,
+  dateModified,
+  datePublished
+} = Astro.props as Props;
+
+const currencyId = {
+  twd: { flag: '🇹🇼', symbol: '$' },
+  jpy: { flag: '🇯🇵', symbol: '¥' },
+  usd: { flag: '🇺🇸', symbol: '$' }
+};
 
 const categoryLabel = categories.find(
   ({ name }) => name === categoryName
@@ -53,9 +76,8 @@ const pageTitle = `${title} (${categoryLabel})`;
     <main>
       <div class='mainLayout'>
         <SlugNavigation categoryName={categoryName} transition:persist />
-        <div>
+        <div class='content'>
           <article>
-            <!-- <Image src={cover.src} alt={title} /> -->
             <slot />
           </article>
           {
@@ -67,8 +89,13 @@ const pageTitle = `${title} (${categoryLabel})`;
               </ul>
             )
           }
-
-          <div class="made">
+          <div class="info">
+            {`${priceNumber === '忘記了' ?
+              '忘記了' :
+              `${!!priceAbout ? '大約 ' : ''}${currencyId[currency].flag} ${currencyId[currency].symbol} ${getNumberComma(priceNumber)}`}`
+            }
+          </div>
+          <div class="info">
           {
             !!made ?
               `${made}製造` :
@@ -124,13 +151,19 @@ const pageTitle = `${title} (${categoryLabel})`;
         }
       }
 
+      .content {
+        @media screen and (min-width: 992px) {
+          max-height: calc(100vh - 68px);
+          overflow-y: auto;
+        }
+      }
+
       article {
         max-width: 672px;
         margin-inline: auto;
         margin-block-end: 2.4rem;
 
         @media screen and (min-width: 992px) {
-          max-height: calc(100vh - 68px);
           padding-block-start: 2.4rem;
           padding-inline: 1.6rem;
         }
@@ -187,7 +220,7 @@ const pageTitle = `${title} (${categoryLabel})`;
         font-size: 1.6rem;
       }
 
-      .made {
+      .info {
         max-width: 672px;
         margin-block: 0 1.6rem;
         margin-inline: auto;
