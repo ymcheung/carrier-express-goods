@@ -17,6 +17,7 @@ interface Props {
     format: string;
   };
   description: string;
+  made?: string;
   tags?: string[];
   dateModified: string;
   datePublished: string;
@@ -25,7 +26,7 @@ interface Props {
 type Params = { categories: (typeof categories)[number]['name'] };
 const { categories: categoryName } = Astro.params as Params;
 
-const { title, description, tags, dateModified, datePublished } =
+const { title, description, made, tags, dateModified, datePublished } =
   Astro.props as Props;
 
 const categoryLabel = categories.find(
@@ -66,6 +67,14 @@ const pageTitle = `${title} (${categoryLabel})`;
               </ul>
             )
           }
+
+          <div class="made">
+          {
+            !!made ?
+              `${made}製造` :
+              '不知道製造地'
+          }
+          </div>
         </div>
       </div>
     </main>
@@ -121,8 +130,18 @@ const pageTitle = `${title} (${categoryLabel})`;
         margin-block-end: 2.4rem;
 
         @media screen and (min-width: 992px) {
+          max-height: calc(100vh - 68px);
           padding-block-start: 2.4rem;
           padding-inline: 1.6rem;
+        }
+
+        @media screen and (min-width: 1200px) {
+          padding-inline: 0;
+        }
+
+        :global(h2) {
+          margin-block: 0 1.6rem;
+          font-size: clamp(2.7rem, 1.2vw + 1.8rem, 3rem);
         }
 
         :global(p) {
@@ -130,6 +149,17 @@ const pageTitle = `${title} (${categoryLabel})`;
           color: var(--color-shade25);
           font-size: clamp(1.8rem, 1.125vw + 1rem, 2.2rem);
           line-height: 1.5;
+        }
+
+        :global(ul) {
+          margin-block: 0 1.6rem;
+          padding-inline-start: 1.6rem;
+        }
+
+        :global(ul > li) {
+          font-size: clamp(1.8rem, 1.125vw + 1rem, 2.2rem);
+          line-height: 1.5;
+          list-style-type: square;
         }
       }
 
@@ -145,12 +175,25 @@ const pageTitle = `${title} (${categoryLabel})`;
         @media screen and (min-width: 992px) {
           padding-inline: 1.6rem;
         }
+
+
+        @media screen and (min-width: 1200px) {
+          padding-inline: 0;
+        }
       }
 
       .tagItem {
         list-style-type: none;
         font-size: 1.6rem;
       }
+
+      .made {
+        max-width: 672px;
+        margin-block: 0 1.6rem;
+        margin-inline: auto;
+        font-size: 1.6rem;
+      }
+
     </style>
   </body>
 </html>

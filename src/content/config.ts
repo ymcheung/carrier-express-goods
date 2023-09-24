@@ -1,7 +1,6 @@
 import { defineCollection } from 'astro:content';
 import { itemSchema } from '../schemas';
 
-// 2. Define your collection(s)
 const tidyCollection = defineCollection({
   type: 'content',
   schema: itemSchema

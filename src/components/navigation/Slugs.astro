@@ -2,9 +2,9 @@
 import { categories } from '../../../constants';
 import { getCollection } from 'astro:content';
 
-type Props = { categoryName: (typeof categories)[number]['name'] };
-
 const { slug: slugName } = Astro.params;
+
+type Props = { categoryName: (typeof categories)[number]['name'] };
 const { categoryName } = Astro.props as Props;
 
 const slugItems = await getCollection(categoryName);
