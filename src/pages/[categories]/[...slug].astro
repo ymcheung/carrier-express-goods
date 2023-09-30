@@ -36,6 +36,7 @@ const {
   data: {
     title,
     // link,
+    brand,
     description,
     price,
     // year,
@@ -60,7 +61,7 @@ const { Content } = await entry.render();
   datePublished={datePublished}
 >
   <h1>{title}</h1>
-  <div class="place">{place}</div>
+  <div class="place">在{place}獲得</div>
   <Image
     class='cover'
     src={import(`../../assets/${categoryName}/${slug}/cover.jpg`)}
@@ -68,6 +69,7 @@ const { Content } = await entry.render();
     height={640}
     alt=''
   />
+  <div>{brand}</div>
   <Content />
 </Layout>
 
