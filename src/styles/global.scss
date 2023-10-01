@@ -1,9 +1,10 @@
 :root {
-  --default-fonts: 'Rubik', system-ui, sans-serif;
-  --mono-fonts: 'Martian Mono', 'Monaco', monospace;
+  --default-fonts: "Rubik", system-ui, sans-serif;
+  --mono-fonts: "Martian Mono", "Monaco", monospace;
 
   --color-shade25: oklch(25% 0 0);
   --color-shade40: oklch(40% 0 0);
+  --color-shade64: oklch(64% 0 0);
   --color-shade80: oklch(80% 0 0);
   --color-shade92: oklch(92% 0 0);
   --color-shade96: oklch(96% 0 0);
@@ -16,7 +17,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -27,4 +30,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-shade98);
-};
+}

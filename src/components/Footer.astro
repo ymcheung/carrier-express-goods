@@ -3,25 +3,27 @@
 ---
 
 <footer>
-  <div class='layout'>
-    <p class='text'>
+  <div class="layout">
+    <span class="text">
       <a
-        class='link'
-        href='https://read.cv/ymcheung'
-        target='_blank'
-        rel='noopener'>@ymcheung</a
-      > 製作 <span class='year'>2023</span>
-    </p>
-    <p class='text sm'>
+        class="link"
+        href="https://read.cv/ymcheung"
+        target="_blank"
+        rel="noopener"
+      >@ymcheung</a>
+      製作
+      <span class="year">2023</span>
+    </span>
+    <span class="text sm">
       使用
       <a
-        class='link'
-        href='https://thenounproject.com/icon/cat-4670212/'
-        target='_blank'
-        rel='noopener'
+        class="link"
+        href="https://thenounproject.com/icon/cat-4670212/"
+        target="_blank"
+        rel="noopener"
         >Gregor Cresnar
       </a> 繪製的圖示，CCBY 3.0
-    </p>
+    </span>
   </div>
 </footer>
 <style lang='scss'>
@@ -36,6 +38,7 @@
   }
 
   .text {
+    display: block;
     margin-block: 0 1.2rem;
     color: var(--color-shade40);
     font-size: 1.6rem;
@@ -46,13 +49,16 @@
 
     &.sm {
       font-size: 1.4rem;
+      line-height: 24px;
     }
   }
 
   .year {
     display: inline-block;
+    padding-block: 4px;
     padding-inline: 4px;
     font-size: 1.4rem;
+    line-height: 1;
     border: 1px solid var(--color-shade80);
     border-radius: 4px;
   }

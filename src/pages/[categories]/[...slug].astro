@@ -63,17 +63,17 @@ const { Content } = await entry.render();
   <h1>{title}</h1>
   <div class="place">在{place}獲得</div>
   <Image
-    class='cover'
+    class="cover"
     src={import(`../../assets/${categoryName}/${slug}/cover.jpg`)}
     width={640}
     height={640}
-    alt=''
+    alt=""
   />
-  <div>{brand}</div>
+  <span class="brand">{brand}</span>
   <Content />
 </Layout>
 
-<style lang='scss'>
+<style lang="scss">
   h1 {
     margin-block: 0 0.8rem;
     color: var(--color-shade25);
@@ -96,4 +96,12 @@ const { Content } = await entry.render();
       max-width: 384px;
     }
   }
+
+  .brand {
+    display: block;
+    margin-block-end: 1.2rem;
+    color: var(--color-shade-64);
+    font-size: 1.6rem;
+  }
+
 </style>
