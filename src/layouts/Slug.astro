@@ -121,7 +121,7 @@ const pageTitle = `${title} (${categoryLabel})`;
       header {
         margin-block-end: 1.6rem;
         // padding-inline-start: 1.6rem;
-        background-color: var(--color-shade96);
+        background-color: var(--colorShade96);
 
         @media screen and (min-width: 992px) {
           grid-area: header;
@@ -178,7 +178,7 @@ const pageTitle = `${title} (${categoryLabel})`;
 
         :global(p) {
           margin-block-start: 0;
-          color: var(--color-shade25);
+          color: var(--colorShade25);
           font-size: clamp(1.8rem, 1.125vw + 1rem, 2.2rem);
           line-height: 1.5;
         }
@@ -208,7 +208,6 @@ const pageTitle = `${title} (${categoryLabel})`;
           padding-inline: 1.6rem;
         }
 
-
         @media screen and (min-width: 1200px) {
           padding-inline: 0;
         }
@@ -224,6 +223,16 @@ const pageTitle = `${title} (${categoryLabel})`;
         margin-block: 0 1.6rem;
         margin-inline: auto;
         font-size: 1.6rem;
+
+
+        @media screen and (min-width: 992px) {
+          padding-inline: 1.6rem;
+        }
+
+
+        @media screen and (min-width: 1200px) {
+          padding-inline: 0;
+        }
       }
 
     </style>
