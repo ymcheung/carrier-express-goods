@@ -39,7 +39,7 @@ const {
     brand,
     description,
     price,
-    // year,
+    year,
     place,
     made,
     tags,
@@ -61,7 +61,7 @@ const { Content } = await entry.render();
   datePublished={datePublished}
 >
   <h1>{title}</h1>
-  <div class="place">在{place}獲得</div>
+  <div class="place">{year.number}&nbsp;{!!year.before && '前'}在{place}獲得</div>
   <Image
     class="cover"
     src={import(`../../assets/${categoryName}/${slug}/cover.jpg`)}
