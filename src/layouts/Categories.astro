@@ -18,7 +18,7 @@ const { title, description, dateModified, datePublished } =
 ---
 
 <!doctype html>
-<html lang='zh-TW'>
+<html lang="zh-TW">
   <head>
     <BaseHead
       title={title}
@@ -27,17 +27,17 @@ const { title, description, dateModified, datePublished } =
       datePublished={datePublished}
     />
   </head>
-  <body class='home'>
+  <body class="home">
     <header>
       <CategoriesNavigation />
     </header>
     <main>
-      <div class='mainLayout'>
+      <div class="mainLayout">
         <slot />
       </div>
     </main>
     <Footer />
-    <style lang='scss'>
+    <style lang="scss">
       .home {
         display: grid;
         grid: auto 1fr auto / 100vw;

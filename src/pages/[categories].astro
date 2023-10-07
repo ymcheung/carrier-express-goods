@@ -31,20 +31,28 @@ const datePublished = '2021-08-11T00:00:00+08:00';
   datePublished={datePublished}
 >
   <SlugNavigation categoryName={categoryName} />
-  <div>
-    <div class='syllabus'>
+  <div class="syllabus">
+    <div class="syllabusContainer">
       <h1>{pageTitle}</h1>
     </div>
   </div>
 </Layout>
 
-<style lang='scss'>
+<style lang="scss">
   .syllabus {
+    padding-block-start: 1.6rem;
+
+
+    @media screen and (min-width: 992px) {
+      padding-block-start: 2.4rem;
+    }
+  }
+
+  .syllabusContainer {
     max-width: 672px;
     margin-inline: auto;
 
     @media screen and (min-width: 992px) {
-      padding-block-start: 2.4rem;
       padding-inline: 1.6rem;
     }
 
