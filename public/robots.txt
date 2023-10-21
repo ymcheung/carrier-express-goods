@@ -1,0 +1,4 @@
+User-agent: AdsBot-Google
+Disallow: /
+
+Sitemap: https://goods.carrier.express/sitemap-index.xml
