@@ -2,7 +2,7 @@ import { z } from "astro:content";
 
 export const itemSchema = z.object({
   title: z.string(),
-  link: z.string().url().optional(),
+  link: z.object({ title: z.string(), href: z.string().url() }).optional(),
   brand: z.string().optional(),
   description: z.string(),
   price: z.object({
