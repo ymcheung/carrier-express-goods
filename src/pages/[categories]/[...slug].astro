@@ -69,16 +69,20 @@ const { Content } = await entry.render();
     height={640}
     alt=""
   />
-  {!!brand &&
-    <div class="meta">
-      <strong class="metaTitle">品牌</strong>
-      <span class="metaName">{brand}</span>
-    </div>
-  }
-  {!! link &&
-    <div class="meta">
-      <strong class="metaTitle">參考連結</strong>
-      <a href={link.href} class="metaName" target="_blank" rel="noopener noreferrer">{link.title}</span>
+  {(!!brand || !!link) &&
+    <div class="layoutMeta">
+      {!!brand &&
+        <div class="meta">
+          <strong class="metaTitle">品牌</strong>
+          <span class="metaName">{brand}</span>
+        </div>
+      }
+      {!!link &&
+        <div class="meta">
+          <strong class="metaTitle">參考連結</strong>
+          <a href={link.href} class="metaName" target="_blank" rel="noopener noreferrer">{link.title}</span>
+        </div>
+      }
     </div>
   }
   {(!!brand || !!link) &&
@@ -111,7 +115,17 @@ const { Content } = await entry.render();
     }
   }
 
+  .layoutMeta {
+    @media screen and (min-width: 992px) {
+      display: grid;
+      grid: auto / repeat(auto-fit, minmax(max-content, 144px));
+      column-gap: 1.6rem;
+    }
+  }
+
   .meta {
+    margin-block-end: 1.2rem;
+
     &Title {
       display: block;
       margin-block-end: 0.4rem;
@@ -122,7 +136,6 @@ const { Content } = await entry.render();
 
     &Name {
       display: inline-block;
-      margin-block-end: 1.2rem;
       color: var(--colorShade40);
       font-size: 1.6rem;
     }
