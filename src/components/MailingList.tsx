@@ -3,21 +3,21 @@ import { z } from "zod";
 import { TextInput } from "@components/TextInput";
 import {
   createForm,
-  // email,
-  // required,
-  zodForm,
+  email,
+  required,
+  // zodForm,
   type SubmitHandler,
 } from "@modular-forms/solid";
 import { supabase } from "../supabaseClient";
 import "./styles/mailingList.scss";
 
-const EmailInputSchema = z
+const emailInputSchema = z
   .object({
     email: z.string().email({ message: "Invalid email address" }),
   })
   .required();
 
-type EmailInput = z.infer<typeof EmailInputSchema>;
+type EmailInput = z.infer<typeof emailInputSchema>;
 
 export default function MailingList() {
   async function handleLoggedInCheck() {
@@ -26,10 +26,12 @@ export default function MailingList() {
     console.log({ data });
   }
   // const isLoggedIn =
+  //
 
-  const [emailInput, { Form, Field, FieldArray }] = createForm<EmailInput>({
-    validate: zodForm(EmailInputSchema),
-  });
+  const [emailInput, { Form, Field, FieldArray }] = createForm<EmailInput>();
+  //   {
+  //   validate: zodForm(emailInputSchema),
+  // }
 
   const handleSubmit: SubmitHandler<EmailInput> = async (values) => {
     try {
@@ -56,7 +58,10 @@ export default function MailingList() {
       </label>
       <div class="formLayout">
         <div>
-          <Field name="email">
+          <Field
+            name="email"
+            validate={[required("沒填寫 Email 喔"), email("Email 格式不對 🤔")]}
+          >
             {(field, props) => {
               console.log({ field });
               return (
