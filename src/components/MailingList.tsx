@@ -1,10 +1,10 @@
-import { z } from "astro:content";
+import { z } from "zod";
 // import { createSignal, createResource, For } from "solid-js";
 import { TextInput } from "@components/TextInput";
 import {
   createForm,
-  email,
-  required,
+  // email,
+  // required,
   zodForm,
   type SubmitHandler,
 } from "@modular-forms/solid";
