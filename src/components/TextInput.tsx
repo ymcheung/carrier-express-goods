@@ -18,8 +18,6 @@ type TextInputProps = {
 export function TextInput(props: TextInputProps) {
   const [, inputProps] = splitProps(props, ["value", "label", "error"]);
 
-  console.log({ inputProps });
-
   return (
     <>
       <input
