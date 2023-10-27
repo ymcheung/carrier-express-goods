@@ -1,6 +1,7 @@
 ---
-import Layout from '@layouts/Index.astro';
 import { SITENAME } from '../../constants';
+import Layout from '@layouts/Index.astro';
+import MailingList from '@components/MailingList';
 
 const description = '蒐集以貓為主題的物品。更棒的是，會有驚喜感。';
 const dateModified = '2023-07-23T17:10:00+08:00';
@@ -15,6 +16,9 @@ const datePublished = '2021-08-11T00:00:00+08:00';
 >
   <h1 class='title'>{SITENAME}</h1>
   <p class='description'>{description}</p>
+  <aside class="mailingListLayout">
+    <MailingList client:load />
+  </aside>
 </Layout>
 
 <style lang='scss'>
@@ -27,7 +31,15 @@ const datePublished = '2021-08-11T00:00:00+08:00';
 
   .description {
     margin-block-start: 0;
+    margin-block-end: 2.4rem;
     color: var(--colorShade40);
     font-size: 1.6rem;
+  }
+
+  .mailingListLayout {
+    margin-inline: -1.2rem;
+    padding: 1.2rem;
+    background-color: var(--colorShade92);
+    border-radius: 0.8rem;
   }
 </style>

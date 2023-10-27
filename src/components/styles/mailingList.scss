@@ -1,0 +1,27 @@
+.formLayout {
+  display: grid;
+  grid: auto auto / auto;
+
+  @media screen and (min-width: 992px) {
+    grid: auto / 320px 1fr;
+    column-gap: 1.2rem;
+  }
+}
+
+.label {
+  display: inline-block;
+  margin-block-end: 0.8rem;
+  font-size: 1.8rem;
+}
+
+.action {
+  text-align: right;
+
+  @media screen and (min-width: 992px) {
+    text-align: initial;
+  }
+}
+
+.submit {
+  font-size: 1.6rem;
+}

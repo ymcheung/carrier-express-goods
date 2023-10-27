@@ -6,6 +6,7 @@ import solidJs from "@astrojs/solid-js";
 // https://astro.build/config
 export default defineConfig({
   site: "https://goods.carrier.express",
+  // output: "server",
   integrations: [markdoc(), sitemap(), solidJs()],
   image: {
     service: squooshImageService(),

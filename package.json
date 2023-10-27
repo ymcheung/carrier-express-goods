@@ -17,6 +17,7 @@
     "@astrojs/solid-js": "^3.0.2",
     "@fontsource-variable/rubik": "^5.0.10",
     "@modular-forms/solid": "^0.20.0",
+    "@supabase/supabase-js": "^2.38.2",
     "astro": "^3.2.0",
     "normalize.css": "^8.0.1",
     "sass": "^1.64.2",
