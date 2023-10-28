@@ -28,7 +28,11 @@ export function TextInput(props: TextInputProps) {
         aria-invalid={!!props.error}
         aria-errormessage={`${props.name}-error`}
       />
-      {props.error && <div id={`${props.name}-error`}>{props.error}</div>}
+      {props.error && (
+        <div id={`${props.name}-error`} class="error">
+          {props.error}
+        </div>
+      )}
     </>
   );
 }

@@ -60,10 +60,12 @@ export default function MailingList() {
         <div>
           <Field
             name="email"
-            validate={[required("沒填寫 Email 喔"), email("Email 格式不對 🤔")]}
+            validate={[
+              required("⬆️ 沒填寫 Email 喔"),
+              email("⬆️ Email 格式不對 🤔"),
+            ]}
           >
             {(field, props) => {
-              console.log({ field });
               return (
                 <TextInput
                   type="email"
@@ -82,6 +84,9 @@ export default function MailingList() {
           <button class="submit" type="submit" disabled={emailInput.submitting}>
             送出
           </button>
+        </div>
+        <div>
+          <p class="promise">每個月最多分享一篇有趣的彙整。</p>
         </div>
       </div>
     </Form>
