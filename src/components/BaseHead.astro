@@ -105,8 +105,8 @@ const schema = () => {
   import.meta.env.PROD && (
     <script
       async
-      data-logspot-pk='pk_sVLah9ZFXgZZAkK6vEiwiOKXCD5vOpxW4zrfTGQe'
-      src='https://cdn.logspot.io/lg.js'
+      data-logspot-pk={import.meta.env.PUBLIC_VITE_LOGSPOT_PUBLIC_KEY}
+      src="https://cdn.logspot.io/lg.js"
     />
   )
 }

@@ -15,7 +15,7 @@ const slugItems = await getCollection(categoryName);
     {
       slugItems.map(({ slug, data }) => (
         <li class={`listItem${slug === slugName ? ' isActive' : ''}`}>
-          <a class='link' href={`/${categoryName}/${slug}`}>
+          <a class='link' href={`/${categoryName}/${slug}`} data-astro-reload>
             {data.title}
           </a>
         </li>

@@ -60,7 +60,7 @@ const pageTitle = `${title} (${categoryLabel})`;
 ---
 
 <!doctype html>
-<html lang='zh-TW'>
+<html lang="zh-TW">
   <head>
     <BaseHead
       title={pageTitle}
@@ -69,14 +69,14 @@ const pageTitle = `${title} (${categoryLabel})`;
       datePublished={datePublished}
     />
   </head>
-  <body class='home'>
+  <body class="home">
     <header>
       <CategoryNavigation />
     </header>
     <main>
-      <div class='mainLayout'>
-        <SlugNavigation categoryName={categoryName} transition:persist />
-        <div class='content'>
+      <div class="mainLayout">
+        <SlugNavigation categoryName={categoryName} />
+        <div class="content">
           <article>
             <slot />
           </article>
@@ -106,7 +106,7 @@ const pageTitle = `${title} (${categoryLabel})`;
       </div>
     </main>
     <Footer />
-    <style lang='scss'>
+    <style lang="scss">
       .home {
         display: grid;
         grid: auto 1fr auto / 100vw;

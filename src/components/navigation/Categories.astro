@@ -13,7 +13,7 @@ const { categories: categoryName = '' } = Astro.params;
     {
       categories.map(({ name, label }) => (
         <li class={`listItem${name === categoryName ? ' isActive' : ''}`}>
-          <a class='link' href={`/${name}`}>
+          <a class='link' href={`/${name}`} data-astro-reload>
             {label}
           </a>
         </li>
