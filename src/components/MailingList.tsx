@@ -8,7 +8,7 @@ import {
   zodForm,
   type SubmitHandler
 } from '@modular-forms/solid';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../lib/supabase';
 import './styles/mailingList.scss';
 
 const emailInputSchema = z.object({
