@@ -1,10 +1,11 @@
 ---
-const response = await fetch(`https://6y29ruwn.apicdn.sanity.io/v2023-08-01/graphql/try/default`,
+import SiteIcon from '@components/navigation/SiteIcon.astro';
+const response = await fetch(import.meta.env.SANITY_API_URL,
   {
     method: 'POST',
     headers: {
-      Authorization: 'bearer skc7jRAVqdcapEwdZUuz5LYrbpFnwKq3r2GRMGjWc7HMbvIyitwqOCF9GYJCR40ESlBfrHqcapQW7byHN6fgYSJJrAdMjvAzQCQtLByhoxc0v2mxKLznKolfLy1zI2lej9eaS8ACQt9quvZLbW9VjiTAbX4jyhKZWGE1Spo6LoSvI7qpyi6m',
-      'Content-Type':'application/json'
+      Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       query: `
@@ -13,24 +14,24 @@ const response = await fetch(`https://6y29ruwn.apicdn.sanity.io/v2023-08-01/grap
             slug {
               current
             },
-         	title,
+         	  title,
             position
           }
         }
       `
     }),
-  });
+  }
+);
 
 type categoryProps = {
   slug: {
-    current: string
-  },
-  title: string
-}
+    current: string;
+  };
+  title: string;
+};
 const json = await response.json();
 const { allCategory } = json.data;
 
-import SiteIcon from '@components/navigation/SiteIcon.astro';
 
 const { categories: categoryName = '' } = Astro.params;
 ---
