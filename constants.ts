@@ -2,35 +2,48 @@ export const SITENAME = '用得到的猫紋';
 
 export const categories = <const>[
   {
-    name: 'tidy',
+    slug: {
+      current: 'tidy'
+    },
     label: '收納'
   },
   {
-    name: 'utensils',
+    slug: {
+      current: 'utensils'
+    },
     label: '廚房清潔'
   },
   // {
-  //   name: 'clean',
+  //   slug:
+  // {current: 'clean}',
   //   label: '清潔'
   // },
   // {
-  //   name: 'clothes',
+  //   slug:
+  // {current: 'clothes'},
   //   label: '衣著'
   // },
   {
-    name: 'decoration',
+    slug: {
+      current: 'decoration'
+    },
     label: '裝飾'
   },
   {
-    name: 'outdoor',
+    slug: {
+      current: 'outdoor'
+    },
     label: '戶外'
   },
   {
-    name: 'stationary',
+    slug: {
+      current: 'stationary'
+    },
     label: '文具'
   }
   // {
-  //   name: 'etc',
+  //   slug:
+  // {current:'etc}',
   //   label: '還沒分類'
   // }
 ];

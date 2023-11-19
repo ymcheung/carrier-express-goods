@@ -1,22 +1,35 @@
 ---
-import { categories } from '../../../constants';
+import { query } from '@queries/slugs';
 import { getCollection } from 'astro:content';
 
 const { slug: slugName } = Astro.params;
 
-type Props = { categorySlug: (typeof categories)[number]['name'] };
+
 const { categorySlug } = Astro.props as Props;
 
-const slugItems = await getCollection(categorySlug);
+const response = await fetch(import.meta.env.SANITY_API_URL,
+  {
+    method: 'POST',
+    headers: {
+      Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ...query(categorySlug) }),
+  }
+);
+
+const json = await response.json();
+const { allPost } = json.data;
+
 ---
 
 <nav>
   <ul class='list'>
     {
-      slugItems.map(({ slug, data }) => (
-        <li class={`listItem${slug === slugName ? ' isActive' : ''}`}>
-          <a class='link' href={`/${categorySlug}/${slug}`} data-astro-reload>
-            {data.title}
+      allPost.map(({ slug, title }) => (
+        <li class={`listItem${slug.current === slugName ? ' isActive' : ''}`}>
+          <a class='link' href={`/${categorySlug}/${slug.current}`} data-astro-reload>
+            {title}
           </a>
         </li>
       ))
