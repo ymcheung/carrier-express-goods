@@ -1,24 +1,42 @@
 ---
 import { SITENAME, categories } from '../../constants';
-// import { getCollection } from 'astro:content';
 import Layout from '@layouts/Categories.astro';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
-
 import SlugNavigation from '@components/navigation/Slugs.astro';
+import { query } from '@queries/categories';
 
 export async function getStaticPaths() {
-  return categories.map(({ name, label }) => ({
-    params: { categories: name },
-    props: { name, label }
+  const response = await fetch(import.meta.env.SANITY_API_URL,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...query }),
+    }
+  );
+  const json = await response.json();
+  const { allCategory } = json.data;
+  return allCategory.map(({ slug, title }) => ({
+    params: { categories: slug.current },
+    props: {
+      slug: slug.current,
+      title
+    }
   }));
 }
 
-type Props = { name: (typeof categories)[number]['name']; label: string };
-const { name: categoryName, label } = Astro.props as Props;
+type categoryProps = {
+  slug:  string;
+  title: string;
+};
 
-const pageTitle = `${label}${SITENAME}`;
+const { slug, title } = Astro.props as categoryProps;
+
+const pageTitle = `${title}${SITENAME}`;
 const description = '蒐集以貓為主題的生活物品。更棒的是，會有驚喜感。';
 const dateModified = '2023-07-23T17:10:00+08:00';
 const datePublished = '2021-08-11T00:00:00+08:00';
@@ -30,7 +48,7 @@ const datePublished = '2021-08-11T00:00:00+08:00';
   dateModified={dateModified}
   datePublished={datePublished}
 >
-  <SlugNavigation categoryName={categoryName} />
+  <SlugNavigation categorySlug={slug} />
   <div class="syllabus">
     <div class="syllabusContainer">
       <h1>{pageTitle}</h1>

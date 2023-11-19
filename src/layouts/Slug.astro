@@ -30,7 +30,7 @@ interface Props {
 }
 
 type Params = { categories: (typeof categories)[number]['name'] };
-const { categories: categoryName } = Astro.params as Params;
+const { categories: categorySlug } = Astro.params as Params;
 
 const {
   title,
@@ -53,7 +53,7 @@ const currencyId = {
 };
 
 const categoryLabel = categories.find(
-  ({ name }) => name === categoryName
+  ({ name }) => name === categorySlug
 )?.label;
 
 const pageTitle = `${title} (${categoryLabel})`;
@@ -75,7 +75,7 @@ const pageTitle = `${title} (${categoryLabel})`;
     </header>
     <main>
       <div class="mainLayout">
-        <SlugNavigation categoryName={categoryName} />
+        <SlugNavigation categorySlug={categorySlug} />
         <div class="content">
           <article>
             <slot />

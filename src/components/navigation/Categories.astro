@@ -1,5 +1,6 @@
 ---
 import SiteIcon from '@components/navigation/SiteIcon.astro';
+import { query } from '@queries/categories';
 const response = await fetch(import.meta.env.SANITY_API_URL,
   {
     method: 'POST',
@@ -7,19 +8,7 @@ const response = await fetch(import.meta.env.SANITY_API_URL,
       Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      query: `
-        query {
-          allCategory(sort: { position: ASC }) {
-            slug {
-              current
-            },
-         	  title,
-            position
-          }
-        }
-      `
-    }),
+    body: JSON.stringify({ ...query }),
   }
 );
 

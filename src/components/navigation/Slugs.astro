@@ -4,10 +4,10 @@ import { getCollection } from 'astro:content';
 
 const { slug: slugName } = Astro.params;
 
-type Props = { categoryName: (typeof categories)[number]['name'] };
-const { categoryName } = Astro.props as Props;
+type Props = { categorySlug: (typeof categories)[number]['name'] };
+const { categorySlug } = Astro.props as Props;
 
-const slugItems = await getCollection(categoryName);
+const slugItems = await getCollection(categorySlug);
 ---
 
 <nav>
@@ -15,7 +15,7 @@ const slugItems = await getCollection(categoryName);
     {
       slugItems.map(({ slug, data }) => (
         <li class={`listItem${slug === slugName ? ' isActive' : ''}`}>
-          <a class='link' href={`/${categoryName}/${slug}`} data-astro-reload>
+          <a class='link' href={`/${categorySlug}/${slug}`} data-astro-reload>
             {data.title}
           </a>
         </li>
