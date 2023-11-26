@@ -1,4 +1,5 @@
 ---
+import { z } from 'zod';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
@@ -6,19 +7,21 @@ import BaseHead from '@components/BaseHead.astro';
 import CategoriesNavigation from '@components/navigation/Categories.astro';
 import Footer from '@components/Footer.astro';
 
-interface Props {
-  title: string;
-  description: string;
-  dateModified: string;
-  datePublished: string;
-}
+const indexProps = z.object({
+  title: z.string(),
+  description: z.string(),
+  dateModified: z.string().datetime({ offset: true }),
+  datePublished: z.string().datetime({ offset: true })
+});
+
+type Props = z.infer<typeof indexProps>;
 
 const { title, description, dateModified, datePublished } =
   Astro.props as Props;
 ---
 
-<!DOCTYPE html>
-<html lang='zh-TW'>
+<!doctype html>
+<html lang="zh-TW">
   <head>
     <BaseHead
       title={title}
@@ -27,17 +30,17 @@ const { title, description, dateModified, datePublished } =
       datePublished={datePublished}
     />
   </head>
-  <body class='home'>
+  <body class="home">
     <header>
       <CategoriesNavigation />
     </header>
     <main>
-      <div class='mainLayout'>
+      <div class="mainLayout">
         <slot />
       </div>
     </main>
     <Footer />
-    <style lang='scss'>
+    <style lang="scss">
       .home {
         display: grid;
         grid: auto 1fr auto / 100vw;

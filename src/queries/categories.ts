@@ -4,8 +4,8 @@ export const query = {
       allCategory(sort: { position: ASC }) {
         slug {
           current
-        },
-     	  title,
+        }
+     	  title
         position
       }
     }

@@ -1,27 +1,62 @@
-import { z } from "astro:content";
+import { z } from 'zod';
 
-export const itemSchema = z.object({
+export const categorySchema = z.object({
   title: z.string(),
-  link: z.object({ title: z.string(), href: z.string().url() }).optional(),
+  slug: z.object({
+    current: z.string()
+  }),
+})
+
+export const postSchema = z.object({
+  cover: z.object({
+    asset: z.object({
+      url: z.string()
+    })
+  }),
+  title: z.string(),
+  slug: z.object({
+    current: z.string()
+  }),
+  links: z.array(
+    z.object({
+      title: z.string(),
+      href: z.string().url()
+    })
+  ).optional(),
   brand: z.string().optional(),
+  content: z.string(),
   description: z.string(),
+  category: z.object({
+    title: z.string(),
+    slug: z.object({
+      current: z.string()
+    })
+  }),
   price: z.object({
-    currency: z.enum(["twd", "jpy", "usd"]).optional(),
-    about: z.boolean().optional(),
-    number: z.number().optional(),
+    currency: z.object({ name: z.enum(['twd', 'jpy', 'usd'])}),
+    about: z.boolean(),
+    amount: z.number()
+  }).optional(),
+  acquired: z.object({
+    year: z.date().optional(),
+    place: z.string().optional(),
+    before: z.boolean().optional()
   }),
-  year: z.object({
-    number: z.number(),
-    before: z.boolean().optional(),
-  }),
-  place: z.string(),
   made: z.string().optional(),
-  source: z.string().url().optional(),
-  tags: z
-    .array(
-      z.enum(["黑貓", "白貓", "橘貓", "賓士貓", "乳牛貓", "三花貓", "虎斑貓"]),
-    )
-    .optional(),
-  dateModified: z.date(),
-  datePublished: z.date(),
+  // tags: z
+  //   .array(
+  //     z.enum(['黑貓', '白貓', '橘貓', '賓士貓', '乳牛貓', '三花貓', '虎斑貓'])
+  //   )
+  //   .optional(),
+  tags: z.array(
+    z.object({
+      name: z.string(),
+      title: z.string(),
+      position: z.number()
+    })
+  ).optional(),
+  _updatedAt: z.string().datetime({ offset: true }),
+  _createdAt: z.string().datetime({ offset: true }),
+  views: z.number(),
+  likes: z.number()
 });

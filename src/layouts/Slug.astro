@@ -1,5 +1,6 @@
 ---
-import { categories } from '../../constants';
+import { z } from 'zod';
+import { postSchema } from '../schemas';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
@@ -9,42 +10,42 @@ import SlugNavigation from '@components/navigation/Slugs.astro';
 import Footer from '@components/Footer.astro';
 import getNumberComma from '../helpers/getNumberComma';
 
-interface Props {
-  title: string;
-  cover?: {
-    src: string;
-    width: number;
-    height: number;
-    format: string;
-  };
-  description: string;
-  price: {
-    currency: 'twd' | 'jpy' | 'usd';
-    number?: number | '忘記了'
-    about?: boolean;
-  };
-  made?: string;
-  tags?: string[];
-  dateModified: string;
-  datePublished: string;
-}
+// type Params = { categories: (typeof categories)[number]['name'] };
+// type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+// const { categories: categorySlug } = Astro.params;
 
-type Params = { categories: (typeof categories)[number]['name'] };
-const { categories: categorySlug } = Astro.params as Params;
+const postLayoutProps = postSchema
+  .pick({
+    title: true,
+    description: true,
+    price: true,
+    category: true,
+    acquired: true,
+    made: true,
+    tags: true,
+    _updatedAt: true,
+    _createdAt: true
+  })
+  .transform(({ _updatedAt, _createdAt, ...rest }) => ({
+    // categoryTitle: category.title,
+    dateModified: _updatedAt,
+    datePublished: _createdAt,
+    ...rest
+  }));
+
+type PostProps = z.infer<typeof postLayoutProps>;
 
 const {
   title,
   description,
-  price: {
-    currency,
-    about: priceAbout,
-    number: priceNumber = '忘記了'
-  },
+  price,
+  category,
+  acquired,
   made,
   tags,
   dateModified,
   datePublished
-} = Astro.props as Props;
+} = Astro.props as PostProps;
 
 const currencyId = {
   twd: { flag: '🇹🇼', symbol: '$' },
@@ -52,11 +53,7 @@ const currencyId = {
   usd: { flag: '🇺🇸', symbol: '$' }
 };
 
-const categoryLabel = categories.find(
-  ({ name }) => name === categorySlug
-)?.label;
-
-const pageTitle = `${title} (${categoryLabel})`;
+const pageTitle = `${title} (${category.title})`;
 ---
 
 <!doctype html>
@@ -75,32 +72,33 @@ const pageTitle = `${title} (${categoryLabel})`;
     </header>
     <main>
       <div class="mainLayout">
-        <SlugNavigation categorySlug={categorySlug} />
+        <SlugNavigation categorySlug={category.slug.current} />
         <div class="content">
           <article>
             <slot />
           </article>
           {
             !!tags && tags.length > 0 && (
-              <ul class='tags'>
-                {tags.map((tag) => (
-                  <li class='tagItem'>{tag}</li>
+              <ul class="tags">
+                {tags.map(({ title }) => (
+                  <li class="tagItem">{title}</li>
                 ))}
               </ul>
             )
           }
-          <div class="info">
-            {`${priceNumber === '忘記了' ?
-              '忘記了' :
-              `${!!priceAbout ? '大約 ' : ''}${currencyId[currency].flag} ${currencyId[currency].symbol} ${getNumberComma(priceNumber)}`}`
-            }
-          </div>
-          <div class="info">
           {
-            !!made ?
-              `${made}製造` :
-              '不知道製造地'
+            !!price?.amount && (
+              <div class="info">
+                {`${!!price.about ? '大約 ' : ''}${
+                  currencyId[price.currency.name].flag
+                } ${currencyId[price.currency.name].symbol} ${getNumberComma(
+                  price.amount
+                )}`}
+              </div>
+            )
           }
+          <div class="info">
+            {!!made ? `${made}製造` : '不知道製造地'}
           </div>
         </div>
       </div>
@@ -224,7 +222,6 @@ const pageTitle = `${title} (${categoryLabel})`;
         margin-inline: auto;
         font-size: 1.6rem;
 
-
         @media screen and (min-width: 992px) {
           padding-inline: 1.6rem;
         }
@@ -233,7 +230,6 @@ const pageTitle = `${title} (${categoryLabel})`;
           padding-inline: 0;
         }
       }
-
     </style>
   </body>
 </html>

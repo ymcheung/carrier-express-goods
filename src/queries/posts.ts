@@ -1,22 +1,17 @@
-export function query(slug: string) {
+export function query(categorySlug: string) {
   return {
     query: `query ($slug: String!) {
       allPost(where: {category: {slug: {current: {eq: $slug}}}}) {
-        title,
-        description,
+        title
         slug {
           current
         }
-        tags {
-          name
-        },
-        _updatedAt,
-        _createdAt
+        _updatedAt
       }
     }
       `,
     variables: {
-      slug
+      slug: categorySlug
     }
   };
 }

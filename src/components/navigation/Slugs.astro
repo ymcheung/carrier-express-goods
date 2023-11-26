@@ -1,34 +1,42 @@
 ---
-import { query } from '@queries/slugs';
-import { getCollection } from 'astro:content';
+import { query } from '@queries/posts';
+import { z } from 'zod';
+import { postSchema } from '../../schemas';
 
 const { slug: slugName } = Astro.params;
-
-
+type Props = { categorySlug: string };
 const { categorySlug } = Astro.props as Props;
 
-const response = await fetch(import.meta.env.SANITY_API_URL,
-  {
-    method: 'POST',
-    headers: {
-      Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ...query(categorySlug) }),
-  }
-);
+const response = await fetch(import.meta.env.SANITY_API_URL, {
+  method: 'POST',
+  headers: {
+    Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ ...query(categorySlug) })
+});
 
 const json = await response.json();
 const { allPost } = json.data;
 
+const slugSchema = postSchema.pick({
+  slug: true,
+  title: true
+});
+
+type allPostSchema = z.infer<typeof slugSchema>;
 ---
 
 <nav>
-  <ul class='list'>
+  <ul class="list">
     {
-      allPost.map(({ slug, title }) => (
+      allPost.map(({ slug, title }: allPostSchema) => (
         <li class={`listItem${slug.current === slugName ? ' isActive' : ''}`}>
-          <a class='link' href={`/${categorySlug}/${slug.current}`} data-astro-reload>
+          <a
+            class="link"
+            href={`/${categorySlug}/${slug.current}`}
+            data-astro-reload
+          >
             {title}
           </a>
         </li>
@@ -37,7 +45,7 @@ const { allPost } = json.data;
   </ul>
 </nav>
 
-<style lang='scss'>
+<style lang="scss">
   nav {
     margin-inline: -1.6rem;
     // padding-inline-start: 1.6rem;

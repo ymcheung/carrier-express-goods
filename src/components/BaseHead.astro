@@ -1,18 +1,35 @@
 ---
+import { z } from 'zod';
+import { postSchema } from '../schemas';
 import { ViewTransitions } from 'astro:transitions';
 
-interface Props {
-  title: string;
-  description: string;
-  dateModified: string;
-  datePublished: string;
-  isDraft?: boolean;
-}
+// interface Props {
+//   title: string;
+//   description: string;
+//   dateModified: string;
+//   datePublished: string;
+//   isDraft?: boolean;
+// }
 
-const { title, description, dateModified, datePublished, isDraft } =
+const headProps = postSchema
+  .pick({
+    title: true,
+    description: true,
+    _updatedAt: true,
+    _createdAt: true
+  })
+  .transform(({ _updatedAt, _createdAt, ...rest }) => ({
+    dateModified: _updatedAt,
+    datePublished: _createdAt,
+    ...rest
+  }));
+
+type Props = z.infer<typeof headProps>;
+
+const { title, description, dateModified, datePublished } =
   Astro.props as Props;
 
-const { href: canonicalUrl, pathname} = Astro.url;
+const { href: canonicalUrl, pathname } = Astro.url;
 const isHome = pathname === '/';
 const ogCoverPath = `images${pathname}/og.jpg`;
 
@@ -57,49 +74,45 @@ const schema = () => {
 };
 ---
 
-<meta charset='utf-8' />
-<meta name='viewport' content='width=device-width, initial-scale=1' />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title}</title>
-<meta name='description' content={description} />
-<link rel='canonical' href={canonicalUrl} />
-<link rel='icon' sizes='any' href='/favicon.ico' />
-<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-<link rel='apple-touch-icon' href='/favicons/apple-touch-icon.png' />
-<link rel='manifest' href='/favicons/site.webmanifest' />
-<meta property='og:type' content={isHome ? 'website' : 'article'} />
-<meta property='og:site_name' content={title} />
-<meta property='og:url' content={canonicalUrl} />
-<meta property='og:title' content={title} />
-<meta property='og:description' content={description} />
-<meta property='og:image' content={`${import.meta.env.SITE}${ogCoverPath}`} />
-{isDraft && <meta name='robots' content='noindex' />}
-<meta property='og:image:alt' content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<link rel="icon" sizes="any" href="/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
+<link rel="manifest" href="/favicons/site.webmanifest" />
+<meta property="og:type" content={isHome ? 'website' : 'article'} />
+<meta property="og:site_name" content={title} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={`${import.meta.env.SITE}${ogCoverPath}`} />
+<meta property="og:image:alt" content={title} />
 {
   !isHome && (
     <>
-      <meta property='og:article:modified_time' content={dateModified} />
-      <meta property='og:article:published_time' content={datePublished} />
-      <meta property='og:article:author' content='Yuming Cheung' />
+      <meta property="og:article:modified_time" content={`${dateModified}`} />
+      <meta property="og:article:published_time" content={`${datePublished}`} />
+      <meta property="og:article:author" content="Yuming Cheung" />
     </>
   )
 }
-<meta property='twitter:card' content='summary_large_image' />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
 <meta
-  property='twitter:url'
-  content={canonicalUrl}
-/>
-<meta property='twitter:title' content={title} />
-<meta property='twitter:description' content={description} />
-<meta
-  property='twitter:image'
+  property="twitter:image"
   content={`${import.meta.env.SITE}${ogCoverPath}`}
 />
-<meta name='format-detection' content='telephone=no' />
-<meta property='fb:app_id' content='1241704385975640' />
-<script type='application/ld+json' set:html={schema()} />
+<meta name="format-detection" content="telephone=no" />
+<meta property="fb:app_id" content="1241704385975640" />
+<script type="application/ld+json" set:html={schema()} />
 <link
-  rel='stylesheet'
-  href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
 />
 {
   import.meta.env.PROD && (

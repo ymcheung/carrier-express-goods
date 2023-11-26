@@ -1,5 +1,7 @@
 ---
-import { SITENAME } from '../../constants';
+import { z } from 'zod';
+import { categorySchema } from '../../schemas';
+import { SITENAME } from '../../../constants';
 import Layout from '@layouts/Categories.astro';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
@@ -7,22 +9,17 @@ import '@fontsource-variable/rubik';
 import SlugNavigation from '@components/navigation/Slugs.astro';
 import { query } from '@queries/categories';
 
-type categoryProps = {
-  slug:  string;
-  title: string;
-};
+type categoryProps = z.infer<typeof categorySchema>;
 
 export async function getStaticPaths() {
-  const response = await fetch(import.meta.env.SANITY_API_URL,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...query }),
-    }
-  );
+  const response = await fetch(import.meta.env.SANITY_API_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `bearer ${import.meta.env.SANITY_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ...query })
+  });
   const json = await response.json();
   const { allCategory } = json.data;
   return allCategory.map(({ slug, title }: categoryProps) => ({
@@ -33,7 +30,6 @@ export async function getStaticPaths() {
     }
   }));
 }
-
 const { slug, title } = Astro.props as categoryProps;
 
 const pageTitle = `${title}${SITENAME}`;
@@ -48,7 +44,7 @@ const datePublished = '2021-08-11T00:00:00+08:00';
   dateModified={dateModified}
   datePublished={datePublished}
 >
-  <SlugNavigation categorySlug={slug} />
+  <SlugNavigation categorySlug={slug.current} />
   <div class="syllabus">
     <div class="syllabusContainer">
       <h1>{pageTitle}</h1>
