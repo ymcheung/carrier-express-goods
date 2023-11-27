@@ -22,13 +22,16 @@ export async function getStaticPaths() {
   });
   const json = await response.json();
   const { allCategory } = json.data;
-  return allCategory.map(({ slug, title }: categoryProps) => ({
+
+  const paths = allCategory.map(({ slug, title }: categoryProps) => ({
     params: { categories: slug.current },
     props: {
-      slug: slug.current,
+      slug,
       title
     }
   }));
+
+  return paths;
 }
 const { slug, title } = Astro.props as categoryProps;
 

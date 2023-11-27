@@ -87,7 +87,7 @@ const {
   content,
   description,
   brand,
-  category: { title: categoryTitle },
+  category,
   links,
   price,
   acquired,
@@ -107,7 +107,7 @@ const bodyContent = marked.parse(content);
   description={description}
   acquired={acquired}
   price={price}
-  categoryTitle={categoryTitle}
+  category={category}
   made={made}
   tags={tags}
   dateModified={dateModified}
