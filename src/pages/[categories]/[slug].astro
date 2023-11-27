@@ -101,7 +101,10 @@ const {
 
 const bodyContent = marked.parse(content);
 
-const acquiredYear = new Date(`${acquired[0].year}`)?.getFullYear();
+let acquiredYear;
+if (acquired?.length > 0) {
+  acquiredYear = new Date(`${acquired[0].year}`)?.getFullYear();
+}
 ---
 
 <Layout
@@ -117,7 +120,7 @@ const acquiredYear = new Date(`${acquired[0].year}`)?.getFullYear();
 >
   <h1>{title}</h1>
   {
-    !!acquired && acquired.length > 0 && (
+    !!acquiredYear && (
       <div class="place">
         {acquiredYear}&nbsp;{!!acquired[0].before && '前'}
         {`在${acquired[0].place}獲得`}
