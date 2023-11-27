@@ -37,11 +37,12 @@ export const postSchema = z.object({
     about: z.boolean(),
     amount: z.number()
   }).optional(),
-  acquired: z.object({
-    year: z.date().optional(),
-    place: z.string().optional(),
-    before: z.boolean().optional()
-  }),
+  acquired: z.array(
+    z.object({
+      year: z.date().optional(),
+      place: z.string().optional(),
+      before: z.boolean().optional()
+  })),
   made: z.string().optional(),
   // tags: z
   //   .array(
