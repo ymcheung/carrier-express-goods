@@ -84,7 +84,7 @@ export default function MailingList() {
             </div>
             <div class="action">
               <button
-                class="submit"
+                class="submit lgspt-submit-email"
                 type="submit"
                 disabled={emailInput.submitting}
               >
