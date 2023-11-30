@@ -42,12 +42,7 @@ const { categories: categoryName = '' } = Astro.params;
   </ul>
 </nav>
 
-<style lang='scss'>
-  // nav {
-  //   padding-inline-start: 1.6rem;
-  //   padding-inline-end: 1.6rem;
-  // }
-
+<style lang="scss">
   .list {
     display: grid;
     grid-auto-flow: column;
@@ -75,12 +70,12 @@ const { categories: categoryName = '' } = Astro.params;
     border-color: transparent;
 
     &:hover {
-      border-color: var(--colorShade92);
+      border-color: var(--colorShade88);
     }
 
     &.isActive {
-      background-color: var(--colorShade92);
-      border-color: var(--colorShade92);
+      background-color: var(--colorShade88);
+      border-color: var(--colorShade88);
 
       .link {
         pointer-events: none;

@@ -74,21 +74,25 @@ const pageTitle = `${title} (${category.title})`;
       <div class="mainLayout">
         <SlugNavigation categorySlug={category.slug.current} />
         <div class="content">
-          <article>
+          <article class="container">
             <slot />
           </article>
           {
             !!tags && tags.length > 0 && (
-              <ul class="tags">
-                {tags.map(({ title }) => (
-                  <li class="tagItem">{title}</li>
-                ))}
-              </ul>
+              <>
+                <hr class="divider" />
+                <ul class="tags container">
+                  {tags.map(({ title }) => (
+                    <li class="tagItem">{title}</li>
+                  ))}
+                </ul>
+              </>
             )
           }
+           <hr class="divider" />
           {
             !!price?.amount && (
-              <div class="info">
+              <div class="info container">
                 {`${!!price.about ? '大約 ' : ''}${
                   currencyId[price.currency.name].flag
                 } ${currencyId[price.currency.name].symbol} ${getNumberComma(
@@ -97,7 +101,7 @@ const pageTitle = `${title} (${category.title})`;
               </div>
             )
           }
-          <div class="info">
+          <div class="info container">
             {!!made ? `${made}製造` : '不知道製造地'}
           </div>
         </div>
@@ -155,9 +159,12 @@ const pageTitle = `${title} (${category.title})`;
         }
       }
 
-      article {
+      .container {
         max-width: 672px;
         margin-inline: auto;
+      }
+
+      article {
         margin-block-end: 2.4rem;
 
         @media screen and (min-width: 992px) {
@@ -183,7 +190,7 @@ const pageTitle = `${title} (${category.title})`;
 
         :global(ul) {
           margin-block: 0 1.6rem;
-          padding-inline-start: 1.6rem;
+          padding-inline-start: 2rem;
         }
 
         :global(ul > li) {
@@ -193,13 +200,18 @@ const pageTitle = `${title} (${category.title})`;
         }
       }
 
+      .divider {
+        margin-block: 0 1.6rem;
+        margin-inline: 0 auto;
+        border-top: 0;
+        border-bottom: 1px solid var(--colorShade88);
+      }
+
       .tags {
         display: grid;
         grid: auto / auto-flow max-content;
         gap: 1.6rem;
-        max-width: 672px;
         margin-block: 0 1.6rem;
-        margin-inline: auto;
         padding-inline: 0;
 
         @media screen and (min-width: 992px) {
@@ -217,9 +229,7 @@ const pageTitle = `${title} (${category.title})`;
       }
 
       .info {
-        max-width: 672px;
         margin-block: 0 1.6rem;
-        margin-inline: auto;
         font-size: 1.6rem;
 
         @media screen and (min-width: 992px) {
