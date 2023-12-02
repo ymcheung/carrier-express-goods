@@ -21,26 +21,40 @@ const { allPost } = json.data;
 
 const slugSchema = postSchema.pick({
   slug: true,
-  title: true
+  title: true,
+  _updatedAt: true
 });
-
 type allPostSchema = z.infer<typeof slugSchema>;
+
+const allCategoryPosts: allPostSchema[] = [
+  ...allPost.map(({ slug, title, _updatedAt }: allPostSchema) => ({
+    slug,
+    title,
+    _updatedAt
+  }))
+];
 ---
 
 <nav>
   <ul class="list">
     {
-      allPost.map(({ slug, title }: allPostSchema) => (
-        <li class={`listItem${slug.current === slugName ? ' isActive' : ''}`}>
-          <a
-            class="link"
-            href={`/${categorySlug}/${slug.current}`}
-            data-astro-reload
-          >
-            {title}
-          </a>
-        </li>
-      ))
+      allCategoryPosts
+        .sort((a, b) => {
+          if (b._updatedAt < a._updatedAt) return 1;
+          if (b._updatedAt > a._updatedAt) return -1;
+          return 0;
+        })
+        .map(({ slug, title }: allPostSchema) => (
+          <li class={`listItem${slug.current === slugName ? ' isActive' : ''}`}>
+            <a
+              class="link"
+              href={`/${categorySlug}/${slug.current}`}
+              data-astro-reload
+            >
+              {title}
+            </a>
+          </li>
+        ))
     }
   </ul>
 </nav>
