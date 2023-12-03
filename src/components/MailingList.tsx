@@ -55,10 +55,9 @@ export default function MailingList() {
       </label>
       <div class="formLayout">
         {isSubmitted() ? (
-          '歡迎對貓商品有興趣！確認信箱正確之後，很快就會與你聯繫。'
+          <p class="sentMagic">歡迎對貓商品有興趣！確認信箱正確之後，很快就會與你聯繫。</p>
         ) : (
           <>
-            {' '}
             <div>
               <Field
                 name="email"
@@ -83,19 +82,19 @@ export default function MailingList() {
               </Field>
             </div>
             <div class="action">
-              <button
-                class="submit lgspt-submit-email"
-                type="submit"
-                disabled={emailInput.submitting}
-              >
-                送出
-              </button>
+              <p class="promise">每個月與你分享一篇有趣的彙整。</p>
+              <div class="actionButton">
+                <button
+                  class="submit lgspt-submit-email"
+                  type="submit"
+                  disabled={emailInput.submitting}
+                >
+                  送出
+                </button>
+              </div>
             </div>
           </>
         )}
-        <div>
-          <p class="promise">每個月最多分享一篇有趣的彙整。</p>
-        </div>
       </div>
     </Form>
   );

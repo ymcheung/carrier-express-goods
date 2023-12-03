@@ -1,8 +1,6 @@
 .formLayout {
-  display: grid;
-  grid: auto auto auto / auto;
-
   @media screen and (min-width: 992px) {
+    display: grid;
     grid: auto auto / 400px 1fr;
     column-gap: 1.2rem;
   }
@@ -15,10 +13,21 @@
 }
 
 .action {
-  text-align: right;
+  display: grid;
+  grid: auto / auto auto;
+  margin-inline-end: -1.2rem;
 
   @media screen and (min-width: 992px) {
-    text-align: initial;
+    display: initial;
+    // text-align: initial;
+  }
+
+  &Button {
+    text-align: right;
+
+    @media screen and (min-width: 992px) {
+      text-align: initial;
+    }
   }
 }
 
@@ -26,12 +35,19 @@
   padding-inline: 1.6rem;
   font-size: 1.6rem;
   line-height: 3;
-  background-color: var(--colorShade80);
+  background-color: var(--colorShade88);
   border: 0;
   border-radius: 0.8rem;
 }
 
+.sentMagic,
 .promise {
   margin-block: 0;
   font-size: 1.4rem;
+}
+
+.promise {
+  @media screen and (min-width: 992px) {
+    display: none;
+  }
 }
