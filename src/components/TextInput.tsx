@@ -22,7 +22,7 @@ export default function TextInput(props: TextInputProps) {
     <>
       <input
         id={props.name}
-        class="input"
+        class={`input${props.error && ' hasError'}`}
         {...inputProps}
         value={props.value || ''}
         aria-invalid={!!props.error}

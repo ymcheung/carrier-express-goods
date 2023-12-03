@@ -1,6 +1,8 @@
 .input {
   display: block;
   width: calc(100% + 2.4rem);
+  position: relative;
+  z-index: 1;
   margin-inline: -1.2rem;
   margin-block-end: 1.2rem;
   padding-inline: 1.2rem;
@@ -15,11 +17,26 @@
     width: 100%;
     margin-inline-start: -1.2rem;
   }
+
+  &.hasError {
+    margin-block-end: -0.8rem;
+  }
 }
 
 .error {
-  margin-bottom: 1.6rem;
+  margin-inline-start: -1.2rem;
+  margin-inline-end: -1.2rem;
+  margin-block-end: 1.6rem;
+  padding-block-start: 1.6rem;
+  padding-block-end: 0.8rem;
+  padding-inline: 1.2rem;
   font-size: 1.4rem;
+  background-color: var(--colorShade88);
+  border-radius: 0 0 0.8rem 0.8rem;
+
+  @media screen and (min-width: 992px) {
+    margin-inline-end: 1.2rem;
+  }
 }
 
 .promiseWide {
