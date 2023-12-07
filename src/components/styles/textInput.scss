@@ -9,8 +9,15 @@
   font-size: 1.6rem;
   line-height: 3;
   background-color: var(--colorShade98);
-  border: 0;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
   border-radius: 0.8rem;
+
+  &:focus {
+    border-color: var(--colorShade88);
+    outline: none;
+  }
 
   @media screen and (min-width: 992px) {
     display: inline-block;
