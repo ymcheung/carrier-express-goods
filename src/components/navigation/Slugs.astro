@@ -33,17 +33,6 @@ const allCategoryPosts: allPostSchema[] = [
     _updatedAt
   }))
 ];
-
-const dateTimeSchema = postSchema.pick({
-  _updatedAt: true
-});
-
-type dateTimeArg = z.infer<typeof dateTimeSchema>;
-
-function handleStringToDate(datetime: dateTimeArg) {
-  console.log({ datetime });
-  return new Date(datetime);
-}
 ---
 
 <nav>

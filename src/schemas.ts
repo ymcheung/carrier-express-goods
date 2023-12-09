@@ -56,8 +56,10 @@ export const postSchema = z.object({
       position: z.number()
     })
   ).optional(),
-  _updatedAt: z.string().datetime({ offset: true }),
-  _createdAt: z.string().datetime({ offset: true }),
+  // _updatedAt: z.string().datetime({ offset: true }),
+  // _createdAt: z.string().datetime({ offset: true }),
+  _updatedAt: z.coerce.date(),
+  _createdAt: z.coerce.date(),
   views: z.number(),
   likes: z.number()
 });

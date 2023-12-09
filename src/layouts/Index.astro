@@ -1,5 +1,6 @@
 ---
 import { z } from 'zod';
+import { postSchema } from '../schemas';
 import 'node_modules/normalize.css/normalize.css';
 import '@styles/global.scss';
 import '@fontsource-variable/rubik';
@@ -7,12 +8,25 @@ import BaseHead from '@components/BaseHead.astro';
 import CategoriesNavigation from '@components/navigation/Categories.astro';
 import Footer from '@components/Footer.astro';
 
-const indexProps = z.object({
-  title: z.string(),
-  description: z.string(),
-  dateModified: z.string().datetime({ offset: true }),
-  datePublished: z.string().datetime({ offset: true })
-});
+const indexProps = postSchema
+  .pick({
+    title: true,
+    description: true,
+    _updatedAt: true,
+    _createdAt: true
+  })
+  .transform(({ _updatedAt, _createdAt, ...rest }) => ({
+    dateModified: _updatedAt,
+    datePublished: _createdAt,
+    ...rest
+  }));
+
+// const indexProps = z.object({
+//   title: z.string(),
+//   description: z.string(),
+//   dateModified: z.string().datetime({ offset: true }),
+//   datePublished: z.string().datetime({ offset: true })
+// });
 
 type Props = z.infer<typeof indexProps>;
 
