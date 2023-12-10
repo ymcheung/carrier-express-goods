@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { createSignal } from 'solid-js';
+import { createSignal, createResource } from 'solid-js';
 import TextInput from '@components/TextInput';
 import {
   createForm,
@@ -9,6 +9,7 @@ import {
   type SubmitHandler
 } from '@modular-forms/solid';
 import { supabase } from '../lib/supabase';
+import { isSignedIn } from '../auth';
 import './styles/mailingList.scss';
 
 const emailInputSchema = z.object({
@@ -17,15 +18,15 @@ const emailInputSchema = z.object({
 
 type EmailInput = z.infer<typeof emailInputSchema>;
 
-export default function MailingList() {
-  // async function handleLoggedInCheck() {
-  //   const { data, error } = await supabase.auth.getSession();
+async function getSession() {
+  const { data } = await supabase.auth.getSession();
+  return !!data.session?.user;
+}
 
-  //   console.log({ data });
-  // }
-  // const isLoggedIn = handleLoggedInCheck();
-  // handleLoggedInCheck();
-  //
+export default function MailingList() {
+  // const [session] = createResource(getSession);
+  const [session] = createResource(isSignedIn);
+
   const [isSubmitted, setIsSubmitted] = createSignal(false);
 
   const [emailInput, { Form, Field }] = createForm<EmailInput>({
@@ -41,10 +42,8 @@ export default function MailingList() {
       setIsSubmitted(true);
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        setIsSubmitted(false);
       }
-    } finally {
-      console.log('success');
     }
   };
 
@@ -54,8 +53,10 @@ export default function MailingList() {
         訂閱最新訊息
       </label>
       <div class="formLayout">
-        {isSubmitted() ? (
-          <p class="sentMagic">歡迎對貓商品有興趣！確認信箱正確之後，很快就會與你聯繫。</p>
+        {session() || isSubmitted() ? (
+          <p class="sentMagic">
+            歡迎對貓商品有興趣！{isSubmitted() ? '確認信箱正確之後，' : '我們'}很快就會與你聯繫。
+          </p>
         ) : (
           <>
             <div>

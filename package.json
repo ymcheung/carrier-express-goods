@@ -15,17 +15,22 @@
     "@astrojs/markdoc": "^0.5.1",
     "@astrojs/sitemap": "^3.0.1",
     "@astrojs/solid-js": "^3.0.2",
+    "@astrojs/vercel": "^6.0.1",
     "@fontsource-variable/rubik": "^5.0.10",
     "@modular-forms/solid": "^0.20.0",
     "@supabase/supabase-js": "^2.38.2",
     "astro": "^3.2.0",
+    "cookie": "^0.6.0",
     "marked": "^10.0.0",
     "normalize.css": "^8.0.1",
     "resend": "^2.0.0",
     "sass": "^1.64.2",
     "sharp": "^0.32.5",
-    "solid-js": "^1.4.3",
+    "solid-js": "^1.8.0",
     "typescript": "^5.2.2",
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.6.0"
   }
 }
