@@ -10,6 +10,14 @@
   display: inline-block;
   margin-block-end: 1.2rem;
   font-size: 1.8rem;
+
+  &.withIcon {
+    font-size: 0;
+  }
+}
+
+.labelText {
+  font-size: 1.8rem;
 }
 
 .action {
@@ -36,9 +44,13 @@
   color: var(--colorShade40);
   font-size: 1.6rem;
   line-height: 3;
-  background-color: var(--colorShade88);
-  border: 0;
+  background-color: var(--colorShade96);
+  border: 2px solid var(--colorShade88);
   border-radius: 0.8rem;
+
+  &.isSubmittable {
+    background-color: var(--colorShade88);
+  }
 }
 
 .sentMagic,

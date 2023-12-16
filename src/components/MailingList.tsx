@@ -10,6 +10,7 @@ import {
 } from '@modular-forms/solid';
 import { supabase } from '../lib/supabase';
 import { isSignedIn } from '../auth';
+import HourGlass from '@elements/icons/HourGlass';
 import './styles/mailingList.scss';
 
 const emailInputSchema = z.object({
@@ -49,13 +50,15 @@ export default function MailingList() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <label class="label" for="email">
-        訂閱最新訊息
+      <label class="label withIcon" for="email">
+        <HourGlass />
+        <span class="labelText">追蹤網站什麼時候準備好</span>
       </label>
       <div class="formLayout">
         {session() || isSubmitted() ? (
           <p class="sentMagic">
-            歡迎對貓商品有興趣！{isSubmitted() ? '確認信箱正確之後，' : '我們'}很快就會與你聯繫。
+            歡迎對貓商品有興趣！{isSubmitted() ? '確認信箱正確之後，' : '我們'}
+            很快就會與你聯繫。
           </p>
         ) : (
           <>
@@ -83,14 +86,14 @@ export default function MailingList() {
               </Field>
             </div>
             <div class="action">
-              <p class="promise">每個月與你分享一篇有趣的彙整。</p>
+              <p class="promise">之後，每個月與你分享一篇有趣的彙整。</p>
               <div class="actionButton">
                 <button
                   class="submit lgspt-submit-email"
                   type="submit"
                   disabled={emailInput.submitting}
                 >
-                  送出
+                  {emailInput.submitting ? '請稍等...' : '送出'}
                 </button>
               </div>
             </div>

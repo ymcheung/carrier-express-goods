@@ -4,6 +4,7 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
+      "@elements/*": ["src/elements/*"],
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
       "@layouts/*": ["src/layouts/*"],
