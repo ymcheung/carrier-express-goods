@@ -33,7 +33,7 @@ export default function TextInput(props: TextInputProps) {
           {props.error}
         </div>
       )}
-      <p class="promiseWide">之後，每個月與你分享一篇有趣的彙整。</p>
+      <p class="promiseWide">準備好之後，每個月與你分享一篇有趣的彙整。</p>
     </>
   );
 }

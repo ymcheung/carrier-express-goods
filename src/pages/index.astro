@@ -1,6 +1,7 @@
 ---
 import { SITENAME } from '../../constants';
 import Layout from '@layouts/Index.astro';
+import SiteIcon from '@components/navigation/SiteIcon.astro';
 // import { getUser } from '../auth';
 import MailingList from '@components/MailingList';
 
@@ -17,8 +18,12 @@ const datePublished = new Date('2021-08-11T00:00:00+08:00');
   dateModified={dateModified}
   datePublished={datePublished}
 >
-  <h1 class="title">{SITENAME}</h1>
-  <!-- <div>{console.log({ user })}</div> -->
+  <h1 class="title">
+    <SiteIcon />
+    <span class="titleText">
+      {SITENAME}
+    </span>
+  </h1>
   <p class="description">{description}</p>
   <aside class="mailingListLayout">
     <MailingList client:only="solid-js" />
@@ -29,8 +34,12 @@ const datePublished = new Date('2021-08-11T00:00:00+08:00');
   .title {
     margin-block-start: 0;
     margin-block-end: 2.4rem;
-    color: var(--colorShade25);
-    font-size: 2.4rem;
+    font-size: 0;
+
+    &Text {
+      color: var(--colorShade25);
+      font-size: 2.4rem;
+    }
   }
 
   .description {

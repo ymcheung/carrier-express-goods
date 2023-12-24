@@ -1,0 +1,32 @@
+---
+
+const { size, viewBox } = Astro.props;
+
+---
+<svg
+  class={`icon is${size}`}
+  viewBox={viewBox}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <slot />
+</svg>
+
+
+<style lang="scss">
+  .icon {
+    vertical-align: bottom;
+    aspect-ratio: 1;
+
+    &.is28 {
+      width: 28px;
+    }
+
+    &.is32 {
+      width: 32px;
+    }
+
+    &.is40 {
+      width: 40px;
+    }
+  }
+</style>

@@ -1,13 +1,11 @@
 ---
+import Svg from '@components/Svg.astro';
 
 ---
 
-<svg
-  class='siteIcon'
-  fill='none'
-  viewBox='0 0 512 512'
-  xmlns='http://www.w3.org/2000/svg'
-  xmlns:xlink='http://www.w3.org/1999/xlink'
+<Svg
+  size={40}
+  viewBox="0 0 512 512"
   ><g clip-path='url(#a)'
     ><g fill='#000' rx='0' ry='0'
       ><path
@@ -24,13 +22,5 @@
         rx='0'
         ry='0'></path></g
     ></g
-  ></svg
+  ></Svg
 >
-<style lang='scss'>
-  .siteIcon {
-    width: 32px;
-    height: 32px;
-    // line-height: 1;
-    vertical-align: bottom;
-  }
-</style>

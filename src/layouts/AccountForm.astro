@@ -7,6 +7,14 @@ export const prerender = false;
   <head>
   </head>
   <body>
-    <slot />
+    <main class="container">
+      <slot />
+    </main>
+    <style lang="scss">
+      .container {
+        max-width: 672px;
+        margin-inline: auto;
+      }
+    </style>
   </body>
 </html>

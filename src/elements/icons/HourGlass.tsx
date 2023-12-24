@@ -1,6 +1,6 @@
-import { children } from 'solid-js';
-import type { JSX, Component, ParentComponent, ParentProps } from 'solid-js';
-import Svg from '@components/Svg';
+// import { children } from 'solid-js';
+import type { JSX } from 'solid-js';
+import Svg from '@components/SvgInTs';
 import '@elements/styles/icons.scss';
 
 export default function HourGlass(): JSX.Element {

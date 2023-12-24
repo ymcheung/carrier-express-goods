@@ -52,7 +52,7 @@ export default function MailingList() {
     <Form onSubmit={handleSubmit}>
       <label class="label withIcon" for="email">
         <HourGlass />
-        <span class="labelText">追蹤網站什麼時候準備好</span>
+        <span class="labelText">追蹤最新消息</span>
       </label>
       <div class="formLayout">
         {session() || isSubmitted() ? (
@@ -86,7 +86,7 @@ export default function MailingList() {
               </Field>
             </div>
             <div class="action">
-              <p class="promise">之後，每個月與你分享一篇有趣的彙整。</p>
+              <p class="promise">準備好之後，每個月與你分享一篇有趣的彙整。</p>
               <div class="actionButton">
                 <button
                   class="submit lgspt-submit-email"

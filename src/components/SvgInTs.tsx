@@ -1,5 +1,5 @@
 // import { children } from 'solid-js';
-import type { JSX, Component, ParentComponent, ParentProps } from 'solid-js';
+import type { JSX, Component } from 'solid-js';
 
 type SvgProps = {
   class?: string;

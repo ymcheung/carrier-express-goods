@@ -23,6 +23,7 @@
 .action {
   display: grid;
   grid: auto / auto auto;
+  column-gap: 0.8rem;
   margin-inline-end: -1.2rem;
 
   @media screen and (min-width: 992px) {

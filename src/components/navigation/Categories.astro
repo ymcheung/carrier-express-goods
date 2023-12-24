@@ -1,6 +1,7 @@
 ---
-import SiteIcon from '@components/navigation/SiteIcon.astro';
 import { query } from '@queries/categories';
+import Home from '@components/navigation/Home.astro';
+
 const response = await fetch(import.meta.env.SANITY_API_URL,
   {
     method: 'POST',
@@ -27,9 +28,6 @@ const { categories: categoryName = '' } = Astro.params;
 
 <nav>
   <ul class='list'>
-    <li class={`listItem${categoryName === '' ? ' isActive' : ''}`}>
-      <a class='link' href='/'><SiteIcon /> 首頁</a>
-    </li>
     {
       allCategory.map(({ slug, title }: categoryProps) => (
         <li class={`listItem${slug.current === categoryName ? ' isActive' : ''}`}>
@@ -39,6 +37,12 @@ const { categories: categoryName = '' } = Astro.params;
         </li>
       ))
     }
+    <li class={`listItem${categoryName === '' ? ' isActive' : ''}`}>
+      <a class='link' href='/'>
+        <Home />
+        首頁
+      </a>
+    </li>
   </ul>
 </nav>
 
