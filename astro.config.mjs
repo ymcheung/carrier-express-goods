@@ -1,5 +1,4 @@
 import { defineConfig, squooshImageService } from 'astro/config';
-import markdoc from '@astrojs/markdoc';
 import sitemap from '@astrojs/sitemap';
 import solidJs from '@astrojs/solid-js';
 
@@ -10,7 +9,7 @@ export default defineConfig({
   site: 'https://goods.carrier.express',
   // output: "server",
   output: 'hybrid',
-  integrations: [markdoc(), sitemap(), solidJs()],
+  integrations: [sitemap(), solidJs()],
   image: {
     service: squooshImageService()
   },
