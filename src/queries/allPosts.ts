@@ -1,7 +1,11 @@
 export const query = {
   query: `
     query {
-      allPost {
+      allPost (
+        where: {
+          _: { is_draft: false }
+        }
+      ) {
         cover {
           asset {
             url
